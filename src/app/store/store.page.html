@@ -1,0 +1,20 @@
+<ion-header>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-segment value="sale">
+        <ion-segment-button (click)="saleSelected = true" value="sale">
+          <ion-label>Vente</ion-label>
+        </ion-segment-button>
+        <ion-segment-button (click)="saleSelected = false" value="search">
+          <ion-label>Recherche</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-sale *ngIf="saleSelected"></app-sale>
+  <p *ngIf="!saleSelected">Vente</p>
+</ion-content>
