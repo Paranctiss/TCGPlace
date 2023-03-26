@@ -34,8 +34,6 @@
     </ion-toolbar>
   </ion-header>
 
-
-   <app-sale *ngIf="saleSelected"></app-sale>
-    <p *ngIf="!saleSelected">Vente</p>
+  <app-add-reference-post (selectRef)="redirectToAddPost($event)"></app-add-reference-post>
 
 </ion-content>

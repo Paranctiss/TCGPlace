@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ItemModel, SalePostModel} from "../../../core/models/sale-post.model";
+import {SalePostModel} from "../../../core/models/sale-post.model";
+import {ItemModel} from "../../../core/models/item.model";
 
 @Component({
   selector: 'app-browse-sale-posts',

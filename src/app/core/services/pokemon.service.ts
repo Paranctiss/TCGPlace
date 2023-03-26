@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PokemonItemReferenceModel} from "../models/pokemon-item-reference.model";
+import {ToastController} from "@ionic/angular";
 
 @Injectable({
   providedIn: 'root'
