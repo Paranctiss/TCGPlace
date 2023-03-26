@@ -5,15 +5,15 @@
   <p>{{searchPost.searchPostPrice}} €</p>
 </div> -->
 <ion-card>
-  <img src="{{searchPost.searchPostItem.image}}/high.webp"/>
+  <img src="{{searchPost.image}}/high.webp"/>
   <ion-card-header>
-    <p>{{searchPost.searchPostItem.itemName}}</p>
-    <p>{{searchPost.searchPostPrice}} €</p>
+    <p>{{searchPost.name}}</p>
+    <p>{{searchPost.price}} €</p>
   </ion-card-header>
   <ion-card-content>
     <div>
-      <p>{{searchPost.searchPostItem.item_extension}}</p>
-      <p>Etat : {{searchPost.searchPostGrading.gradingName}}</p>
+      <p>{{searchPost.itemExtension}}</p>
+      <p>{{searchPost.grading.name}}</p>
     </div>
     <div>
       <ion-icon name="heart-outline" size="large"></ion-icon>

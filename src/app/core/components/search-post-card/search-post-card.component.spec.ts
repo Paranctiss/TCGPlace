@@ -22,26 +22,24 @@ describe('SearchPostCardComponent', () => {
     const searchPost: SearchPostModel = {
       merch_remarks : "Remarks",
       merch_public : true,
-      searchPostPrice : 1.0,
+      name:"Test SP",
+      price : 1.0,
       merch_id : 1,
-      searchPostGradingId : 1,
-      searchPostItemId : 1,
-      searchPostPostStateId : "C",
-      searchPostId : 1,
-      searchPostRemarks : "Remarks",
-      searchPostPublic : true,
-      searchPostUserId : 1,
-      searchPostItem :  new ItemModel(
-        1,
-        "Test card",
-        "https://www.pokepedia.fr/images/thumb/c/c2/Tiplouf-DEPS.png/1200px-Tiplouf-DEPS.png",
-        "eb01",
-        "01/100",
-      ),
+      gradingId : 1,
+      itemId : 1,
+      statePostId : "C",
+      id : 1,
+      remarks : "Remarks",
+      isPublic : true,
+      userId : 1,
+      itemName: "Test card",
+      itemExtension : "eb01",
+      itemNumber : "01/100",
+      image: "https://www.pokepedia.fr/images/thumb/c/c2/Tiplouf-DEPS.png/1200px-Tiplouf-DEPS.png",
       merch_price: 1.0,
-      searchPostGrading : {
-        gradingId: 1,
-        gradingName: "Neuf"
+      grading : {
+        id: 1,
+        name: "Neuf"
       }
 
     }

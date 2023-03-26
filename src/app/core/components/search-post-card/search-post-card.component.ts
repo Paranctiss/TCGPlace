@@ -11,6 +11,7 @@ export class SearchPostCardComponent implements OnInit {
   @Input() searchPost!: SearchPostModel
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }
