@@ -1,0 +1,13 @@
+ion-checkbox {
+  --size: 25px;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 6px;
+  border: 2px solid #3880ff;
+}
+
+.photos{
+  margin: 8px;
+  padding-left: 5px;
+}

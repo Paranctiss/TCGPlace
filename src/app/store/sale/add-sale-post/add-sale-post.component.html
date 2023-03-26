@@ -1,3 +1,77 @@
-<p>
-  add-sale-post works!
-</p>
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title align="center">Ajouter une annonce de vente</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div *ngIf="reference$ | async as reference" align="center" style="margin-top: 10px">
+    <ion-img src="{{reference.image}}/high.webp" style="width: 150px"></ion-img>
+    <p>{{reference.itemName}} | {{reference.extension}}</p>
+  </div>
+
+  <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+    <ion-label position="fixed">Prix</ion-label>
+    <ion-input type="number" inputmode="decimal" placeholder="0.00" >{{'' | number: '1.0-3'}}</ion-input>
+    <ion-label position="fixed"></ion-label>
+  </ion-item>
+
+  <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+    <ion-label position="floating" style="size: 20px">Etat</ion-label>
+    <ion-select interface="popover" placeholder="Choisit un état">
+      <ion-select-option value="1">Neuf</ion-select-option>
+      <ion-select-option value="2">Presque neuf</ion-select-option>
+      <ion-select-option value="3">Jouée</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+    <ion-label position="stacked">Remarques</ion-label>
+    <ion-textarea placeholder="Remarques sur le produit (dégradation, spécificité..)"></ion-textarea>
+  </ion-item>
+
+  <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px;">
+    <ion-checkbox slot="start"></ion-checkbox>
+    <ion-label>Annonce privée</ion-label>
+  </ion-item>
+
+
+    <ion-label style="padding-left: 40px;">Photos :</ion-label>
+  <div>
+  <ion-grid class="photos">
+      <ion-row>
+        <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+          <ion-img [src]="photo.webviewPath" style="object-fit:cover;"></ion-img>
+        </ion-col>
+        <ion-col>
+          <ion-button
+            (click)="addPhotoToGallery()"
+            shape="round"
+            size="large"
+          >
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      expand="full"
+      size="large"
+      color="primary"
+      class="ion-activatable ripple-parent rectangle">
+      Envoyer
+    <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

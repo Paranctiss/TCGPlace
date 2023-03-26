@@ -1,10 +1,29 @@
-<ion-header>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-segment value="sale">
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the menu content.</ion-content>
+</ion-menu>
+<ion-content [fullscreen]="true" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons  style="display: flex; flex-direction: row; justify-content: space-between">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
+        <img (click)="scrollToTop()" src="../../assets/img/logo.png" width="80">
+        <div>
+          <ion-button>
+            <ion-icon slot="icon-only" color="medium" name="notifications"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-segment value="sale" mode="md" >
         <ion-segment-button (click)="saleSelected = true" value="sale">
           <ion-label>Vente</ion-label>
         </ion-segment-button>
@@ -15,6 +34,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-sale *ngIf="saleSelected"></app-sale>
-  <p *ngIf="!saleSelected">Vente</p>
+
+    <app-sale *ngIf="saleSelected"></app-sale>
+    <p *ngIf="!saleSelected">Vente</p>
+
 </ion-content>
