@@ -12,7 +12,7 @@ const routes: Routes = [
         loadChildren: () => import('../store/store.module').then(m => m.StorePageModule)
       },
       {
-        path: 'ajouter',
+        path: 'add',
         loadChildren: () => import('../store/store.module').then(m => m.StorePageModule)
       },
       {

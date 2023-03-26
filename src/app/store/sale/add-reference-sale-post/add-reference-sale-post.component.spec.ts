@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { AddReferenceSalePostComponent } from './add-reference-sale-post.component';
+import {HttpClientModule} from "@angular/common/http";
 
 describe('AddReferenceSalePostComponent', () => {
   let component: AddReferenceSalePostComponent;
@@ -10,7 +11,7 @@ describe('AddReferenceSalePostComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AddReferenceSalePostComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddReferenceSalePostComponent);

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-store',
@@ -7,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./store.page.scss'],
 })
 export class StorePage implements OnInit {
-
+  @ViewChild(IonContent) content!: IonContent;
   constructor() { }
 
   saleSelected = true;
@@ -19,4 +20,7 @@ export class StorePage implements OnInit {
   ngOnInit() {
   }
 
+  scrollToTop() {
+    this.content.scrollToTop(500);
+  }
 }
