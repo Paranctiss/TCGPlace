@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {PhotoService} from "../../../core/services/photo.service";
-import {PokemonService} from "../../../core/services/pokemon.service";
-import {PokemonItemReferenceModel} from "../../../core/models/pokemon-item-reference.model";
+import {PhotoService} from "../../core/services/photo.service";
+import {PokemonService} from "../../core/services/pokemon.service";
+import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {Observable} from "rxjs";
 

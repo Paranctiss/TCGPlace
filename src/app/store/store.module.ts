@@ -10,17 +10,20 @@ import { StorePage } from './store.page';
 import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
 import {SaleComponent} from "./sale/sale.component";
 import {BrowseSalePostsComponent} from "./sale/browse-sale-posts/browse-sale-posts.component";
-import {AddSalePostComponent} from "./sale/add-sale-post/add-sale-post.component";
-import {AddReferenceSalePostComponent} from "./sale/add-reference-sale-post/add-reference-sale-post.component";
+import {AddSalePostComponent} from "../add-post/add-sale-post/add-sale-post.component";
+import {AddReferencePostComponent} from "../add-post/add-reference-post/add-reference-post.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        StorePageRoutingModule,
-        ExploreContainerComponentModule
-    ],
-  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, AddSalePostComponent, AddReferenceSalePostComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    StorePageRoutingModule,
+    ExploreContainerComponentModule
+  ],
+  exports: [
+
+  ],
+  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent]
 })
 export class StorePageModule {}

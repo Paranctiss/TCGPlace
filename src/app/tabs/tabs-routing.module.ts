@@ -13,7 +13,7 @@ const routes: Routes = [
       },
       {
         path: 'add',
-        loadChildren: () => import('../store/store.module').then(m => m.StorePageModule)
+        loadChildren: () => import('../add-post/add-post.module').then(m => m.AddPostPageModule)
       },
       {
         path: 'tab3',
