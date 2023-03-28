@@ -12,7 +12,7 @@ export class SaleComponent implements OnInit {
   routeUrl:string = this.router.url;
 
   ngOnInit() {
-    console.log(this.router.url)
+
   }
 
 }

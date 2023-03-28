@@ -12,6 +12,8 @@ import {SaleComponent} from "./sale/sale.component";
 import {BrowseSalePostsComponent} from "./sale/browse-sale-posts/browse-sale-posts.component";
 import {AddSalePostComponent} from "../add-post/add-sale-post/add-sale-post.component";
 import {AddReferencePostComponent} from "../add-post/add-reference-post/add-reference-post.component";
+import {SearchComponent} from "./search/search.component";
+import {BrowseSearchPostsComponent} from "./search/browse-search-posts/browse-search-posts.component";
 
 @NgModule({
   imports: [
@@ -24,6 +26,6 @@ import {AddReferencePostComponent} from "../add-post/add-reference-post/add-refe
   exports: [
 
   ],
-  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent]
+  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent]
 })
 export class StorePageModule {}

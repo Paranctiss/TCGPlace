@@ -69,7 +69,7 @@ export class AddSearchPostComponent implements OnInit {
       error: (error) => {
         if(error.status === 500){
           this.loading = false;
-          this.toastService.presentToastError("Une erreur interne au serveur survenue !")
+          this.toastService.presentToastError("Erreur interne au serveur survenue !")
         }
         if(error.status === 400){
           this.loading = false;
