@@ -12,7 +12,7 @@ import {ToastService} from "../core/services/toast.service";
 export class StorePage implements OnInit {
   @ViewChild(IonContent) content!: IonContent;
   constructor(private toastService:ToastService) { }
-  saleSelected = true;
+  saleSelected = false;
 
   segmentButtonClicked(ev: any) {
     console.log('Segment button clicked', ev);

@@ -12,7 +12,7 @@ import {SearchPostModel} from "../../core/models/search-post.model";
 export class AddSearchPostService{
   constructor(private http: HttpClient) {}
 
-  PostSalePost(searchPost: SearchPostModel):Observable<HttpResponse<HttpResponse<SearchPostModel>>>{
-    return this.http.post<HttpResponse<SearchPostModel>>('https://localhost:7033/SearchPost/add', searchPost, {observe: 'response'})
+  PostSalePost(searchPost: SearchPostModel):Observable<HttpResponse<SearchPostModel>>{
+    return this.http.post<SearchPostModel>('https://localhost:7033/SearchPost/add', searchPost, {observe: 'response'})
   }
 }

@@ -1,6 +1,6 @@
 export class ItemModel {
-  item_id!: number;
-  item_name!: string;
-  item_img!: string;
+  id!: number;
+  itemName!: string;
+  image!: string;
   item_extension!: string;
 }

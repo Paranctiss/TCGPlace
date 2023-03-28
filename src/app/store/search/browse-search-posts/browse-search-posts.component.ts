@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchPostModel} from "../../../core/models/search-post.model";
+import {ItemModel} from "../../../core/models/item.model";
+import {filter, map, Observable, of, tap} from "rxjs";
+import {SearchPostService} from "../services/searchPost.service";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-browse-search-posts',
@@ -7,8 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowseSearchPostsComponent implements OnInit {
 
-  constructor() { }
+  loading:boolean = true;
+  skeletons = [0,0,0,0]
+  searchPosts$: Observable<SearchPostModel[] | null> = of([])
 
-  ngOnInit() {}
+  constructor(private searchPostService:SearchPostService) { }
+
+  ngOnInit() {
+    this.searchPosts$ = this.searchPostService.getPublicSearchPosts().pipe(
+      filter((value) => value !== null),
+      tap(_ => this.loading = false),
+      map(response => response.body)
+    )
+
+  }
 
 }

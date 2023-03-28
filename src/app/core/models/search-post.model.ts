@@ -1,8 +1,9 @@
 import {MerchPostModel} from "./merch-post-model";
 import {ItemModel} from "./item.model";
+import {GradingModel} from "./grading.model";
 
 export class SearchPostModel extends MerchPostModel{
-  search_post_id!: number;
+  searchPostId!: number;
   searchPostItem!: ItemModel;
   searchPostItemId!: number;
   searchPostGradingId!: number;
@@ -11,6 +12,7 @@ export class SearchPostModel extends MerchPostModel{
   searchPostPublic!: boolean;
   searchPostPostStateId!: string;
   searchPostUserId!: number;
+  searchPostGrading!: GradingModel;
 }
 
 
