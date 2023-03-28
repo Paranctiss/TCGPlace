@@ -11,4 +11,6 @@ ion-item {
   padding: 5px;
   background-color: #333333;
 }
-
+:host{
+  width: 50%;
+}

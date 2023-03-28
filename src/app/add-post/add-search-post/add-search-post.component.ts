@@ -1,16 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PhotoService} from "../../core/services/photo.service";
+import {Component, OnInit} from '@angular/core';
 import {PokemonService} from "../../core/services/pokemon.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {SearchPostModel} from "../../core/models/search-post.model";
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {AddSearchPostService} from "../services/add-search-post.service";
-import {SalePostModel} from "../../core/models/sale-post.model";
 import {UserService} from "../../core/services/user.service";
 import {ToastService} from "../../core/services/toast.service";
-import {HttpResponse} from "@angular/common/http";
 
 
 @Component({
@@ -38,7 +35,10 @@ export class AddSearchPostComponent implements OnInit {
 
   ngOnInit() {
     this.reference$ = this.pokemonService.GetReferenceById(this.route.snapshot.params['id'])
+    this.buildIonicForm()
+  }
 
+  buildIonicForm(){
     this.ionicForm = this.formBuilder.group({
       price: ['', [Validators.required, Validators.min(0.5)]],
       grading: ['', [Validators.required]],
@@ -49,6 +49,21 @@ export class AddSearchPostComponent implements OnInit {
   }
 
   submitForm() {
+    this.loading = true;
+    let searchPost:SearchPostModel = this.getFormData()
+
+    this.addSearchPostService.PostSearchPost(searchPost).subscribe({
+      next: (response) => {
+        if(response.status == 201){
+          this.toastService.presentToastSuccess("Annonce crée")
+          this.loading = false;
+          this.router.navigateByUrl("/tabs/store")
+        }
+      }
+    })
+  }
+
+  getFormData():SearchPostModel{
     let searchPost:SearchPostModel = new SearchPostModel()
     searchPost.searchPostItemId = this.ionicForm.controls['refId'].value;
     searchPost.searchPostPrice = this.ionicForm.controls['price'].value;
@@ -57,27 +72,8 @@ export class AddSearchPostComponent implements OnInit {
     searchPost.searchPostPostStateId = "C";
     searchPost.searchPostGradingId = this.ionicForm.controls['grading'].value;
     searchPost.searchPostUserId = this.userService.GetCurrentUserID()
-    this.loading = true;
-    this.addSearchPostService.PostSalePost(searchPost).subscribe({
-      next: (response) => {
-        if(response.status == 201){
-          this.toastService.presentToastSuccess("Annonce crée")
-          this.loading = false;
-          this.router.navigateByUrl("/tabs/store")
-        }
-      },
-      error: (error) => {
-        if(error.status === 500){
-          this.loading = false;
-          this.toastService.presentToastError("Une erreur interne au serveur survenue !")
-        }
-        if(error.status === 400){
-          this.loading = false;
-          this.toastService.presentToastError("Erreur de requête !")
-        }
-      }
-    })
 
+    return searchPost;
   }
 
 }
