@@ -10,10 +10,9 @@ import { StorePage } from './store.page';
 import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
 import {SaleComponent} from "./sale/sale.component";
 import {BrowseSalePostsComponent} from "./sale/browse-sale-posts/browse-sale-posts.component";
-import {AddSalePostComponent} from "../add-post/add-sale-post/add-sale-post.component";
-import {AddReferencePostComponent} from "../add-post/add-reference-post/add-reference-post.component";
 import {SearchComponent} from "./search/search.component";
 import {BrowseSearchPostsComponent} from "./search/browse-search-posts/browse-search-posts.component";
+import {CoreModule} from "../core/core.module";
 
 @NgModule({
   imports: [
@@ -21,7 +20,8 @@ import {BrowseSearchPostsComponent} from "./search/browse-search-posts/browse-se
     FormsModule,
     IonicModule,
     StorePageRoutingModule,
-    ExploreContainerComponentModule
+    ExploreContainerComponentModule,
+    CoreModule
   ],
   exports: [
 

@@ -10,6 +10,7 @@ import { AddPostPage } from './add-post.page';
 import {AddReferencePostComponent} from "./add-reference-post/add-reference-post.component";
 import {AddSalePostComponent} from "./add-sale-post/add-sale-post.component";
 import {AddSearchPostComponent} from "./add-search-post/add-search-post.component";
+import {CoreModule} from "../core/core.module";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {AddSearchPostComponent} from "./add-search-post/add-search-post.componen
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    AddPostPageRoutingModule
+    AddPostPageRoutingModule,
+    CoreModule
   ],
   exports: [
     AddReferencePostComponent,

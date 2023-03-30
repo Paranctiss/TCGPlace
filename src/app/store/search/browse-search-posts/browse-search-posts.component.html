@@ -7,31 +7,12 @@
             <p>{{post.searchPostItem.itemName}}</p>
             <p>Etat : {{post.searchPostGrading.gradingName}}</p>
             <p>{{post.searchPostPrice}} €</p>
-
           </div>
         </ion-col>
-      <ng-template [ngIf]="loading">
-        <ion-col size="6" *ngFor="let skeleton of skeletons; index as position">
-          <div class="postCard">
-            <ion-label>
-              <ion-thumbnail slot="start" style="width: 100%">
-                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
-              </ion-thumbnail>
-              <h3>
-                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
-              </h3>
-              <p>
-                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
-              </p>
-              <p>
-                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
-              </p>
-            </ion-label>
-          </div>
-        </ion-col>
-      </ng-template>
-
     </ion-row>
   </ion-grid>
 </ion-grid>
+<ng-template [ngIf]="loading">
+  <app-skeleton-grid></app-skeleton-grid>
+</ng-template>
 
