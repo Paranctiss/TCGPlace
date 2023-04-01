@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {ToastController} from "@ionic/angular";
+import { register } from 'swiper/element/bundle';
 
+register();
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -8,8 +9,4 @@ import {ToastController} from "@ionic/angular";
 })
 export class AppComponent {
   constructor() {}
-
-
-
-
 }

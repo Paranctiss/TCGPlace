@@ -2,12 +2,7 @@
   <ion-grid>
     <ion-row>
        <ion-col size="6" *ngFor="let post of searchPosts$ | async ; index as position">
-          <div class="postCard">
-            <ion-img src="{{post.searchPostItem.image}}/high.webp"></ion-img>
-            <p>{{post.searchPostItem.itemName}}</p>
-            <p>Etat : {{post.searchPostGrading.gradingName}}</p>
-            <p>{{post.searchPostPrice}} €</p>
-          </div>
+          <app-search-post-card [searchPost]="post"></app-search-post-card>
         </ion-col>
     </ion-row>
   </ion-grid>

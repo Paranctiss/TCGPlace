@@ -16,11 +16,12 @@ export class BrowseSalePostsComponent implements OnInit {
 
     let itemModel:ItemModel = new ItemModel()
     itemModel.image = "https://cardcollection.fr/img/cms/Dos_carte_pokemon.jpg";
-    itemModel.item_extension = "SDB"
-    itemModel.itemName = "Mewtwo 20/105"
+    itemModel.itemName = "Mewtwo"
+    itemModel.item_extension = "Set de base"
+    itemModel.item_number = "20/105"
 
     let salepost:SalePostModel = new SalePostModel()
-    salepost.merch_price = 20;
+    salepost.salePostPrice = 20;
     salepost.merch_public = false;
     salepost.merch_remarks = "Super remarques"
     salepost.sale_post_item = itemModel

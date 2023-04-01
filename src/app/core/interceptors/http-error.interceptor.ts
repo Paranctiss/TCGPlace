@@ -21,9 +21,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap(evt => {
-        console.log("wowo")
         if(evt instanceof HttpResponse){
-          console.log("hello")
           if(evt.status === 500){
             this.toastService.presentToastError("Erreur interne au serveur survenue !")
           }
