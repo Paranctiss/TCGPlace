@@ -13,6 +13,8 @@ import {BrowseSalePostsComponent} from "./sale/browse-sale-posts/browse-sale-pos
 import {SearchComponent} from "./search/search.component";
 import {BrowseSearchPostsComponent} from "./search/browse-search-posts/browse-search-posts.component";
 import {CoreModule} from "../core/core.module";
+import {SearchPostCardComponent} from "../core/components/search-post-card/search-post-card.component";
+import {SalePostCardComponent} from "../core/components/sale-post-card/sale-post-card.component";
 
 @NgModule({
   imports: [
@@ -24,8 +26,9 @@ import {CoreModule} from "../core/core.module";
     CoreModule
   ],
   exports: [
+    SalePostCardComponent
 
   ],
-  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent]
+  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent, SearchPostCardComponent, SalePostCardComponent]
 })
 export class StorePageModule {}

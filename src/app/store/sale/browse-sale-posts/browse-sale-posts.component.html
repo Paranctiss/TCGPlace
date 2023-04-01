@@ -2,11 +2,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let post of salePosts; index as position">
-        <div class="postCard">
-          <ion-img [src]="post.sale_post_item.image"></ion-img>
-          <p>{{post.merch_price}} €</p>
-          <p>{{post.sale_post_item.itemName}}</p>
-        </div>
+        <app-sale-post-card [salePost]="post"></app-sale-post-card>
       </ion-col>
     </ion-row>
   </ion-grid>
