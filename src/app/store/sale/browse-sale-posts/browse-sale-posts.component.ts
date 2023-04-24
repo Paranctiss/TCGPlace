@@ -14,12 +14,13 @@ export class BrowseSalePostsComponent implements OnInit {
 
   ngOnInit() {
 
-    let itemModel:ItemModel = new ItemModel()
-    itemModel.image = "https://cardcollection.fr/img/cms/Dos_carte_pokemon.jpg";
-    itemModel.itemName = "Mewtwo"
-    itemModel.item_extension = "Set de base"
-    itemModel.item_number = "20/105"
-
+    let itemModel:ItemModel = new ItemModel(
+      0,
+      "Mewtwo",
+      "https://cardcollection.fr/img/cms/Dos_carte_pokemon.jpg",
+      "Set de base",
+      "20/105"
+    )
     let salepost:SalePostModel = new SalePostModel()
     salepost.salePostPrice = 20;
     salepost.merch_public = false;
