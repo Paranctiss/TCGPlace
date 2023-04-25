@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {PokemonService} from "../../core/services/pokemon.service";
+import {PokemonService} from "../../core/services/PokemonService/pokemon.service";
 import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {Observable} from "rxjs";
 

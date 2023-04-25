@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {PokemonService} from "../../core/services/pokemon.service";
+import {PokemonService} from "../../core/services/PokemonService/pokemon.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {SearchPostModel} from "../../core/models/search-post.model";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {AddSearchPostService} from "../services/add-search-post.service";
-import {UserService} from "../../core/services/user.service";
+import {UserService} from "../../core/services/UserService/user.service";
 import {ToastService} from "../../core/services/toast.service";
 
 
