@@ -1,13 +1,13 @@
-<ion-card>
-  <img [src]="salePost.sale_post_item.image"/>
+<ion-card class="card-container">
+  <img [src]="salePost.itemId.image"/>
   <ion-card-header>
-    <p>{{salePost.sale_post_item.itemName}}</p>
-    <p>{{salePost.salePostPrice}} €</p>
+    <ion-card-title class="card-name">{{salePost.itemId.itemName}}</ion-card-title>
+    <ion-card-subtitle class="card-price">{{salePost.price}} €</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     <div>
-      <p>{{salePost.sale_post_item.item_extension}}</p>
-      <p>{{salePost.sale_post_item.item_number}}</p>
+      <p>{{salePost.itemId.item_extension}}</p>
+      <p>{{salePost.itemId.item_number}}</p>
     </div>
     <div>
       <ion-icon name="heart-outline" size="large"></ion-icon>

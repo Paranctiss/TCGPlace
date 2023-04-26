@@ -1,7 +1,10 @@
+import { getLocaleDateFormat } from '@angular/common';
 import {Injectable} from '@angular/core';
 import {Camera, CameraDirection, CameraResultType, CameraSource, Photo} from '@capacitor/camera';
 import {Directory, Filesystem} from '@capacitor/filesystem';
 import {Preferences} from '@capacitor/preferences';
+import { read } from 'fs';
+import {PictureModel} from 'src/app/core/models/pictures.model'
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +89,37 @@ export class PhotoService {
     };
     reader.readAsDataURL(blob);
   });
+
+  public async CreatePicture(): Promise<PictureModel[]> {
+    var pictures:PictureModel[] = [];
+
+    //Récupération des photos sauvegardées
+    const photoList = await Preferences.get({ key: this.PHOTO_STORAGE });
+    if (typeof photoList.value === "string") {
+      this.photos = JSON.parse(photoList.value) || [];
+    }
+    //Insertion de chaque photo dans le tableau
+    for (let photo of this.photos) {
+      const readFile = await Filesystem.readFile({
+        path: photo.filepath,
+        directory: Directory.Data,
+      });
+
+      const base64 = readFile.data;
+
+      const min = Math.ceil(0);
+      const max = Math.floor(99999);
+      const rdm = Math.floor(Math.random() * (max - min)) + min;
+      const maDate: string = new Date().toISOString().substring(0,10);
+      const nomFic = rdm + "_" + maDate;
+
+      const pic = new PictureModel(nomFic, base64);
+
+      pictures.push(pic);
+      
+    }
+   return pictures;
+  }
 
 }
 

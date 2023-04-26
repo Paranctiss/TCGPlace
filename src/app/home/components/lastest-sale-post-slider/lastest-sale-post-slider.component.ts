@@ -25,10 +25,10 @@ export class LastestSalePostSliderComponent implements OnInit {
       "20/105"
     )
     let salepost:SalePostModel = new SalePostModel()
-    salepost.salePostPrice = 20;
+    salepost.price = 20;
     salepost.merch_public = false;
     salepost.merch_remarks = "Super remarques"
-    salepost.sale_post_item = itemModel
+    salepost.itemId = itemModel
     this.salePosts.push(salepost)
     this.salePosts.push(salepost)
     this.salePosts.push(salepost)
