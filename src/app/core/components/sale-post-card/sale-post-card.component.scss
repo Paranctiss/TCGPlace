@@ -8,48 +8,25 @@ ion-card{
 }
 
 ion-card-header{
-  padding: 10px;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+ion-card-header p {
+  padding: 2px;
+  margin: 2px;
   font-weight: bold;
   color: #0D5696;
-  justify-content: space-between;
-  align-items: center;
 }
 
 ion-card-content{
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-
-ion-card-content p{
-  font-size: 11px;
-}
-
-ion-card-subtitle{
-  margin: 0;
-}
-
-.card-container{
-  max-width: 200px;
-}
-
-.card-price{
-  font-size: 22px;
-  color: #0D5696;
-}
-
-.card-name{
-  font-size: 16px;
-  color: #0D5696;
-}
-
-img{
-  border-radius: 5px;
+ion-icon{
 }
