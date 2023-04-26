@@ -1,8 +1,8 @@
 export class PokemonItemReferenceModel{
   _id!: string;
-  id!: string;
-  itemName!: string;
+  idCard!: string;
+  name!: string;
   image!: string;
-  extension!: string;
+  idExtension!: string;
   language!: string;
 }

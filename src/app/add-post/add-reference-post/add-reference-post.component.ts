@@ -23,7 +23,8 @@ export class AddReferencePostComponent implements OnInit {
   }
 
   SelectReference(reference:PokemonItemReferenceModel){
-    this.selectRef.emit(reference.id);
+    console.log(reference)
+    this.selectRef.emit(reference.idCard);
   }
 
 }

@@ -14,7 +14,6 @@ export class AddPostPage implements OnInit {
 
   saleSelected = true;
   ngOnInit() {
-    console.log(this.router.url)
   }
 
   scrollToTop() {
