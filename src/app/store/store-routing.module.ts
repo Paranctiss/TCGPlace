@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ViewSalePostComponent } from './sale/view-sale-post/view-sale-post.component';
 
 import { StorePage } from './store.page';
-import {AddSalePostComponent} from "../add-post/add-sale-post/add-sale-post.component";
 
 const routes: Routes = [
   {
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: StorePage
   },
   {
-    path: ':id',
-    component: AddSalePostComponent
+    path: 'sale/:id',
+    component: ViewSalePostComponent
   }
 ];
 
