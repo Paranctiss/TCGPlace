@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {PokemonService} from "../../core/services/PokemonService/pokemon.service";
 import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {Observable} from "rxjs";
@@ -15,8 +15,10 @@ export class AddReferencePostComponent implements OnInit {
   loading:boolean = true;
 
   ReferencesList$!: Observable<PokemonItemReferenceModel[]>;
+  
   constructor(private pokemonService:PokemonService) {
     this.ReferencesList$ = this.pokemonService.GetAllReference()
+
   }
 
   ngOnInit(): void {
