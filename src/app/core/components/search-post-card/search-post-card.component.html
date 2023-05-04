@@ -1,10 +1,4 @@
-<!-- <div class="postCard">
-  <ion-img src="{{searchPost.searchPostItem.image}}/high.webp"></ion-img>
-  <p>{{searchPost.searchPostItem.itemName}}</p>
-  <p>Etat : {{searchPost.searchPostGrading.gradingName}}</p>
-  <p>{{searchPost.searchPostPrice}} €</p>
-</div> -->
-<ion-card>
+<ion-card (click)="ViewSearchPost()">
   <img src="{{searchPost.image}}/high.webp"/>
   <ion-card-header>
     <p>{{searchPost.name}}</p>
@@ -16,7 +10,8 @@
       <p>{{searchPost.grading.name}}</p>
     </div>
     <div>
-      <ion-icon name="heart-outline" size="large"></ion-icon>
+      <ion-icon *ngIf="!this.searchPost.liked" name="heart-outline" size="large" (click)="LikeSearchPost(this.searchPost.id, $event)"></ion-icon>
+      <ion-icon *ngIf="this.searchPost.liked" name="heart" color="danger" size="large" (click)="UnLikeSearchPost(this.searchPost.id, $event)"></ion-icon>
     </div>
   </ion-card-content>
 </ion-card>

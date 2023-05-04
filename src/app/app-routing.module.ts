@@ -17,7 +17,11 @@ const routes: Routes = [
   {
     path: 'add-post',
     loadChildren: () => import('./add-post/add-post.module').then( m => m.AddPostPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+
 ];
 @NgModule({
   imports: [

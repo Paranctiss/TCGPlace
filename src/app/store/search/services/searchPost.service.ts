@@ -16,4 +16,12 @@ export class SearchPostService{
     return this.http.get<SearchPostModel[]>(`${this.apiURL}/SearchPost/public`,{observe: 'response'})
   }
 
+  getSingleSearchPost(id:any): Observable<HttpResponse<SearchPostModel>>{
+    return this.http.get<SearchPostModel>(`${this.apiURL}/SearchPost/${id}`,{observe: 'response'})
+  }
+
+  getSomeSearchPostForUser(userId:number, nbMax:number): Observable<HttpResponse<SearchPostModel[]>>{
+    return this.http.get<SearchPostModel[]>(`${this.apiURL}/SearchPost/user/${userId}/${nbMax}`,{observe: 'response'})
+  }
+
 }

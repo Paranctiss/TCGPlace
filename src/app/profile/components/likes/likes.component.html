@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favoris</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-grid [fixed]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let post of likedSearchPosts$ | async ; index as position">
+        <app-search-post-card [searchPost]="post.searchPost"></app-search-post-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-grid>

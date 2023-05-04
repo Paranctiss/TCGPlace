@@ -2,8 +2,13 @@ import {MerchPostModel} from "./merch-post-model";
 import {ItemModel} from "./item.model";
 import {GradingModel} from "./grading.model";
 
+type GUID = string & { isGuid: true};
+function guid(guid: string) : GUID {
+  return  guid as GUID;
+}
+
 export class SearchPostModel extends MerchPostModel{
-  id!: number;
+  id!: GUID;
   gradingId!: number;
   price!: number;
   remarks!: string;
@@ -17,6 +22,7 @@ export class SearchPostModel extends MerchPostModel{
   itemNumber!: string;
   itemName!: string;
   grading!: GradingModel;
+  liked!: boolean;
 }
 
 

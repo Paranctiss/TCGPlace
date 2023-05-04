@@ -15,17 +15,15 @@ export class AddReferencePostComponent implements OnInit {
   loading:boolean = true;
 
   ReferencesList$!: Observable<PokemonItemReferenceModel[]>;
-  
+
   constructor(private pokemonService:PokemonService) {
     this.ReferencesList$ = this.pokemonService.GetAllReference()
-
   }
 
   ngOnInit(): void {
   }
 
   SelectReference(reference:PokemonItemReferenceModel){
-    console.log(reference)
     this.selectRef.emit(reference.idCard);
   }
 

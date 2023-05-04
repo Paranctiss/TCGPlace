@@ -26,10 +26,11 @@ import { ViewSalePostComponent } from './sale/view-sale-post/view-sale-post.comp
     ExploreContainerComponentModule,
     CoreModule
   ],
-  exports: [
-    SalePostCardComponent
+    exports: [
+        SalePostCardComponent,
+        SearchPostCardComponent
 
-  ],
+    ],
   declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent, SearchPostCardComponent, SalePostCardComponent, ViewSalePostComponent]
 })
 export class StorePageModule {}
