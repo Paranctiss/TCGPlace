@@ -15,8 +15,6 @@ export class LikedSearchPostService{
 
   }
   private apiURL = POST_URL;
-
-
   LikeSearchPost(postId: string):Observable<HttpResponse<any>>{
     type GUID = string & { isGuid: true};
     function guid(guid: string) : GUID {

@@ -12,7 +12,11 @@ const routes: Routes = [
   {
     path: 'likes',
     component: LikesComponent
-  }
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({
