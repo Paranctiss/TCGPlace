@@ -8,7 +8,7 @@
   <div *ngIf="!loading; else pageLoading">
     <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
       <div *ngIf="reference$ | async as reference; else loading" align="center" style="margin-top: 10px">
-        <ion-img src="{{reference.image}}/high.webp" style="width: 150px"></ion-img>
+        <ion-img (click)="openFullscreenImage(reference.image+'/high.webp')" src="{{reference.image}}/high.webp" style="width: 150px"></ion-img>
         <p>{{reference.name}} | {{reference.idExtension}}</p>
       </div>
 
@@ -45,7 +45,7 @@
       <ion-grid class="photos">
           <ion-row>
             <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-              <ion-img [src]="photo.webviewPath" style="object-fit:cover;"></ion-img>
+              <ion-img [src]="photo.webviewPath" (click)="openFullscreenImage(photo.webviewPath)" style="object-fit:cover;"></ion-img>
             </ion-col>
             <ion-col>
               <ion-button

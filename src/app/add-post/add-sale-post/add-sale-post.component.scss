@@ -11,3 +11,12 @@ ion-checkbox::part(container) {
   margin: 8px;
   padding-left: 5px;
 }
+
+ion-title{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+ion-img:hover{
+  cursor: pointer;
+}

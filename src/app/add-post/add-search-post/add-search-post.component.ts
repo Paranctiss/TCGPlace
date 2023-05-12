@@ -8,6 +8,8 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {AddSearchPostService} from "../services/add-search-post.service";
 import {UserService} from "../../core/services/UserService/user.service";
 import {ToastService} from "../../core/services/toast.service";
+import { ModalController } from '@ionic/angular';
+import { FullScreenImageComponent } from 'src/app/core/components/full-screen-image/full-screen-image.component';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class AddSearchPostComponent implements OnInit {
     private addSearchPostService: AddSearchPostService,
     private userService: UserService,
     private router:Router,
-    private toastService:ToastService
+    private toastService:ToastService,
+    private modalCtrl:ModalController
   ) { }
 
   reference$!: Observable<PokemonItemReferenceModel>
@@ -74,6 +77,16 @@ export class AddSearchPostComponent implements OnInit {
     searchPost.userId = this.userService.GetCurrentUserID()
 
     return searchPost;
+  }
+
+  async openFullscreenImage(imageUrl: string) {
+    const modal = await this.modalCtrl.create({
+      component: FullScreenImageComponent,
+      componentProps: {
+        imageUrl: imageUrl
+      }
+    });
+    return await modal.present();
   }
 
 }

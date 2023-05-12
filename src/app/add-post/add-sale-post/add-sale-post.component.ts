@@ -4,6 +4,8 @@ import {PokemonService} from "../../core/services/PokemonService/pokemon.service
 import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
+import {ModalController} from "@ionic/angular";
+import { FullScreenImageComponent } from 'src/app/core/components/full-screen-image/full-screen-image.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SalePostModel } from 'src/app/core/models/sale-post.model';
 import { AddSalePostService } from '../services/add-sale-post.service';
@@ -24,11 +26,13 @@ export class AddSalePostComponent implements OnInit {
               private router:Router,
               public formBuilder: FormBuilder,
               private userService: UserService,
+              private modalCtrl: ModalController,
               private route:ActivatedRoute) { }
 
   reference$!: Observable<PokemonItemReferenceModel>
   ionicForm!: FormGroup;
   loading: boolean = false;
+  private selectedImage!: HTMLIonImgElement;
 
   ngOnInit() {
     this.reference$ = this.pokemonService.GetReferenceById(this.route.snapshot.params['id'])
@@ -77,4 +81,15 @@ export class AddSalePostComponent implements OnInit {
     return salePost;
   }
 
+  async openFullscreenImage(imageUrl: string) {
+    const modal = await this.modalCtrl.create({
+      component: FullScreenImageComponent,
+      componentProps: {
+        imageUrl: imageUrl
+      }
+      
+    });
+    return await modal.present();
+  }
+   
 }

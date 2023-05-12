@@ -1,9 +1,9 @@
-<ion-title>Dernières annonce de vente</ion-title>
+<h2 class="pl-1">Dernières annonces de vente</h2>
 <div style="width: 100%; text-align: right">
   <a (click)="navigateTo()">Tout voir →</a>
 </div>
 
-<swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
+<swiper-container slides-per-view="auto" free-mode="true" class="pb-3">
   <swiper-slide *ngFor="let post of salePost | async; index as position" style="margin: 15px; max-width: 200px;">
     <app-sale-post-card [salePost]="post"></app-sale-post-card>
   </swiper-slide>

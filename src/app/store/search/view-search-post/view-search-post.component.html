@@ -35,7 +35,7 @@
       <a>Tout voir →</a>
     </div>
   </div>
-  <swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
+  <swiper-container slides-per-view="auto" free-mode="true" class="pb-3">
     <swiper-slide *ngFor="let searchPost of UserSearchPost$ | async as user" style="margin: 15px; max-width: 200px;">
       <app-search-post-card [searchPost]="searchPost"></app-search-post-card>
     </swiper-slide>
