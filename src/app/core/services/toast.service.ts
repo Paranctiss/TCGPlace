@@ -21,6 +21,17 @@ export class ToastService {
     await toast.present();
   }
 
+  public async presentToastAlreadyExist(message: string, duration: number = 2000) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      position: 'top',
+      color: 'danger',
+      icon: 'alert-outline'
+    });
+    await toast.present();
+  }
+
   public async presentToastError(message: string, duration: number = 5000) {
     const toast = await this.toastController.create({
       message: message,

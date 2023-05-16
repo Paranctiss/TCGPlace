@@ -1,3 +1,37 @@
-.postCard{
-  background-color: #dfece9;
+ion-row {
+  display: flex;
+  justify-content: center;
 }
+
+ion-col {
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+ion-card {
+  margin: 0;
+  max-width: 300px;
+  cursor: pointer;
+}
+
+ion-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ion-card-header p {
+  font-weight: bold;
+  font-size: 1em;
+  color: #0D5696;
+  margin: 0;
+}
+
+.img-drapeau-france {
+  max-width: 20px;
+  max-height: 20px;
+  margin-right: 5px;
+}
+

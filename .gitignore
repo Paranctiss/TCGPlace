@@ -69,3 +69,6 @@ Thumbs.db
 /.vscode/
 /.vs
 /android/app/build
+/test-results/
+/playwright-report/
+/playwright/.cache/

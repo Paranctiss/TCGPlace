@@ -9,17 +9,23 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttpErrorInterceptor} from "./core/interceptors/http-error.interceptor";
 import {CoreModule} from "./core/core.module";
+import { LikesComponent } from './profile/components/likes/likes.component';
+import {StorePageModule} from "./store/store.module";
+import { ViewSearchPostComponent } from './store/search/view-search-post/view-search-post.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LikesComponent,
+    ViewSearchPostComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    StorePageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

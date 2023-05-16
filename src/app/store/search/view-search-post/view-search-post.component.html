@@ -1,0 +1,57 @@
+<ion-content>
+<ion-header>
+  <ion-title>Annonce de recherche</ion-title>
+</ion-header>
+    <div class="cardInformations"  *ngIf="this.SearchPost$ | async as searchPost">
+      <ion-img src="{{searchPost.image}}/high.webp" style="width: 150px; margin: auto"></ion-img>
+
+      <ion-item lines="full">
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>
+          SuperDresseur45
+        </ion-label>
+        <ion-icon name="mail-outline" slot="end"></ion-icon>
+      </ion-item>
+
+      <p class="title">{{searchPost.name}}</p>
+      <p class="grading">{{searchPost.grading.name}}</p>
+      <b class="price">{{searchPost.price}}€</b>
+      <p style="color: #9d9fa6">Remarques liées à la recherche :</p>
+      <p class="remarks">{{searchPost.remarks}}</p>
+    </div>
+
+  <div class="btnActions">
+    <ion-button expand="full">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+    <ion-button expand="full" color="secondary">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
+    <ion-button expand="full" color="tertiary">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
+    <ion-button expand="full" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+  </div>
+
+  <div class="otherUserPosts">
+    <p>Autres recherches de ce vendeur :</p>
+    <div style="width: 100%; text-align: right">
+      <a>Tout voir →</a>
+    </div>
+  </div>
+  <swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
+    <swiper-slide *ngFor="let searchPost of UserSearchPost$ | async as user" style="margin: 15px; max-width: 200px;">
+      <app-search-post-card [searchPost]="searchPost"></app-search-post-card>
+    </swiper-slide>
+  </swiper-container>
+
+
+</ion-content>
+<!-- <ion-footer>
+    <ion-button
+      type="submit"
+      expand="full"
+      size="large"
+      color="primary"
+      class="ion-activatable ripple-parent rectangle">
+      Acheter
+      <ion-icon slot="end" name="cart"></ion-icon>
+    </ion-button>
+</ion-footer> -->
+

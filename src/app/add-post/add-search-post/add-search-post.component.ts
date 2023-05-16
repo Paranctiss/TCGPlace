@@ -65,13 +65,13 @@ export class AddSearchPostComponent implements OnInit {
 
   getFormData():SearchPostModel{
     let searchPost:SearchPostModel = new SearchPostModel()
-    searchPost.searchPostItemId = this.ionicForm.controls['refId'].value;
-    searchPost.searchPostPrice = this.ionicForm.controls['price'].value;
-    searchPost.searchPostRemarks = this.ionicForm.controls['remarks'].value;
-    searchPost.searchPostPublic = this.ionicForm.controls['public'].value;
-    searchPost.searchPostPostStateId = "C";
-    searchPost.searchPostGradingId = this.ionicForm.controls['grading'].value;
-    searchPost.searchPostUserId = this.userService.GetCurrentUserID()
+    searchPost.itemId = this.ionicForm.controls['refId'].value;
+    searchPost.price = this.ionicForm.controls['price'].value;
+    searchPost.remarks = this.ionicForm.controls['remarks'].value;
+    searchPost.isPublic = this.ionicForm.controls['public'].value;
+    searchPost.statePostId = "C";
+    searchPost.gradingId = this.ionicForm.controls['grading'].value;
+    searchPost.userId = this.userService.GetCurrentUserID()
 
     return searchPost;
   }
