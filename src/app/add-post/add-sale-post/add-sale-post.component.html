@@ -9,7 +9,7 @@
     <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
       <div *ngIf="reference$ | async as reference; else loading" align="center" style="margin-top: 10px">
         <ion-img src="{{reference.image}}/high.webp" style="width: 150px"></ion-img>
-        <p>{{reference.itemName}} | {{reference.extension}}</p>
+        <p>{{reference.name}} | {{reference.idExtension}}</p>
       </div>
 
        <ng-template #loading ><div class="spin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div></ng-template>

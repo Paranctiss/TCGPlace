@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {ItemModel} from "../../../core/models/item.model";
+import {PictureModel} from "../../../core/models/picture.model";
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class BrowseSalePostsComponent implements OnInit {
 
   salePosts: SalePostModel[] = []
+  pictures: PictureModel[] = []
   constructor(private router:Router) { }
 
   ngOnInit() {
@@ -24,13 +26,13 @@ export class BrowseSalePostsComponent implements OnInit {
     )
     this.salePosts = 
     [
-      {"sale_post_id":1,"salePostPrice":20,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
-      {"sale_post_id":2,"salePostPrice":14,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
-      {"sale_post_id":3,"salePostPrice":2,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
-      {"sale_post_id":4,"salePostPrice":15,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
-      {"sale_post_id":5,"salePostPrice":25,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
-      {"sale_post_id":6,"salePostPrice":27,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
-      {"sale_post_id":7,"salePostPrice":234,"merch_public":false,"merch_remarks":"Super remarques","sale_post_grading_id":1,"sale_post_item":itemModel,"merch_id":1,"merch_price":2},
+      {"salePostId":1,"price":20,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true, "merch_id": 1,"merch_price":2},
+      {"salePostId":2,"price":14,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
+      {"salePostId":3,"price":2,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
+      {"salePostId":4,"price":15,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
+      {"salePostId":5,"price":25,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
+      {"salePostId":6,"price":27,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
+      {"salePostId":7,"price":234,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
     ];
   }
 
