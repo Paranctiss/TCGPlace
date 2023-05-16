@@ -44,7 +44,8 @@ export class AddSalePostComponent implements OnInit {
       price: ['', [Validators.required, Validators.min(0.5)]],
       grading: ['', [Validators.required]],
       remarks: ['', [Validators.required]],
-      public: [true]
+      public: [true],
+      refId: this.route.snapshot.params['id']
     });
   }
 
