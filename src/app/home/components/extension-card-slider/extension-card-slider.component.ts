@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ExtensionModel } from './models/extension.model';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ExtensionCardService } from './services/extension-card.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-extension-card-slider',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExtensionCardSliderComponent implements OnInit {
 
-  extensions = [0,0,0,0,0,0,0,0,0]
-  constructor() { }
+  extensions$!: Observable<ExtensionModel[]>
+  constructor(private router:Router, private http: HttpClient, private extensionCardService: ExtensionCardService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.extensions$= this.extensionCardService.GetAllExtensions()
+  }
 
+  navigateTo(idExtension:string) {
+    this.router.navigateByUrl(`/tabs/store/extension/${idExtension}`);
+   }
 }

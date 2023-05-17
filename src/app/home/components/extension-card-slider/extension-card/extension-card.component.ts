@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ExtensionModel } from '../models/extension.model';
 
 @Component({
   selector: 'app-extension-card',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./extension-card.component.scss'],
 })
 export class ExtensionCardComponent implements OnInit {
+  
+  @Input() extension!:ExtensionModel
 
   constructor() { }
-
-  ngOnInit() {}
+  
+  ngOnInit() {
+    
+  }
 
 }
