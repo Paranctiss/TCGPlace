@@ -1,1 +1,127 @@
-<p>view-sale-post works!</p>
+<ion-content>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title align="center">Détails article</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- <ion-card *ngIf="SalePost$ | async as salePost">
+            <div>
+              merch_id: {{ salePost.sale_post_id }}
+            </div>
+
+      </ion-card> -->
+
+      <ng-container *ngIf="SalePost$ | async as salePost">
+        <ion-item>
+          <ion-label>merch_id</ion-label>
+          <ion-note slot="end">{{ salePost?.merch_id }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>merch_price</ion-label>
+          <ion-note slot="end">{{ salePost?.merch_price }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>merch_remarks</ion-label>
+          <ion-note slot="end">{{ salePost?.merch_remarks }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>merch_public</ion-label>
+          <ion-note slot="end">{{ salePost?.merch_public }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>image</ion-label>
+          <ion-note slot="end">{{ salePost?.sale_post_item?.image }}</ion-note>
+        </ion-item>
+      </ng-container>
+  
+    <!--   ------------------------------------------------------------------------------------------  -->
+<!--
+    <div class="cardInformations"  *ngIf="this.SalePost$ | async as salePost">
+        <ion-img src="{{salePost.image}}/high.webp" style="width: 150px; margin: auto"></ion-img>
+  
+        <ion-item lines="full">
+          <ion-avatar slot="start">
+            <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+          <ion-label>
+            SuperDresseur45
+          </ion-label>
+          <ion-icon name="mail-outline" slot="end"></ion-icon>
+        </ion-item>
+  
+        <p class="title">{{salePost.name}}</p>
+        <p class="grading">{{salePost.grading.name}}</p>
+        <b class="price">{{salePost.price}}€</b>
+        <p style="color: #9d9fa6">Remarques liées à la recherche :</p>
+        <p class="remarks">{{salePost.remarks}}</p>
+      </div>
+
+    -->
+<!--   ------------------------------------------------------------------------------------------  -->
+
+<!--
+  <div *ngIf="!loading; else pageLoading">
+    <form novalidate>
+      <div *ngIf="reference$ | async as reference; else loading" align="center" style="margin-top: 10px">
+        <ion-img src="{{reference.image}}/high.webp" style="width: 150px"></ion-img>
+        <p>{{reference.name}} | {{reference.idExtension}}</p>
+        <p>Extension : Origine perdue</p>
+        <p>Mise en ligne il y a X heures</p>
+      </div>
+      <ng-template #loading ><div class="spin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div></ng-template>
+  
+      <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+        <ion-label class="ion-label-paragraphe" text-wrap position="fixed">Extension</ion-label>
+        <ion-label class="ion-label-paragraphe" text-wrap position="fixed">origine perdue</ion-label>
+      </ion-item>
+
+      <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+        <ion-label class="ion-label-paragraphe" text-wrap position="fixed">Prix</ion-label>
+        <ion-label class="ion-label-paragraphe" text-wrap position="fixed">23 €</ion-label>
+      </ion-item>
+    
+      <ion-item class="ion-label-paragraphe" style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+        <ion-label text-wrap position="stacked">
+            <h2>Remarques :</h2>
+            <br/>
+            <p class="ion-label-paragraphe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam velit nec tristique fermentum. In id quam non justo laoreet fermentum. Sed consectetur nulla nec ligula pharetra, a commodo magna bibendum. Duis convallis metus ac tincidunt vulputate. Mauris id justo lectus. Donec mattis purus ut est varius consequat. Pellentesque consectetur, sapien ac efficitur fringilla, lectus dolor auctor dolor, at posuere metus mauris vel orci. Morbi auctor rutrum feugiat. Nam varius fermentum orci non aliquet. Sed commodo risus vitae erat gravida, at convallis lacus cursus. In eget tincidunt libero.</p>
+        </ion-label>
+      </ion-item>
+      
+      <ion-item style="padding-left: 40px; padding-right: 40px; padding-bottom: 20px">
+        <ion-label class="ion-label-paragraphe" text-wrap position="fixed">Etat</ion-label>
+        <ion-label class="ion-label-paragraphe" text-wrap position="fixed">Neuf</ion-label>
+      </ion-item>
+
+    </form>
+  </div>
+    <ng-template #pageLoading>
+      <div class="pageSpin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div>
+    </ng-template>
+  </ion-content>-->
+  <!-- (click)="ionicForm.valid && submitForm()" -->
+  <ion-footer>
+    <ion-toolbar>
+      <ion-button
+        type="submit"
+        expand="full"
+        size="large"
+        color="secondary"
+        class="ion-activatable ripple-parent rectangle">
+        Acheter XX €
+        <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button
+      type="submit"
+      expand="full"
+      size="large"
+      color="primary"
+      class="ion-activatable ripple-parent rectangle">
+      Faire une offre
+      <ion-icon slot="end" name="chevron-forward-circle-outline"></ion-icon>
+    </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+  
+  
