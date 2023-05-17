@@ -1,39 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {ItemModel} from "../../../core/models/item.model";
 import {PictureModel} from "../../../core/models/picture.model";
 import { Router } from '@angular/router';
+import {SalePostService} from "../services/sale-post.service";
+import {filter, map, Observable, of, scan, Subscription, tap} from "rxjs";
+import {SearchPostModel} from "../../../core/models/search-post.model";
+import {da, ta, th} from "date-fns/locale";
+import {InfiniteScrollCustomEvent} from "@ionic/angular";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-browse-sale-posts',
   templateUrl: './browse-sale-posts.component.html',
   styleUrls: ['./browse-sale-posts.component.scss'],
 })
-export class BrowseSalePostsComponent implements OnInit {
+export class BrowseSalePostsComponent implements OnInit, OnDestroy {
 
-  salePosts: SalePostModel[] = []
   pictures: PictureModel[] = []
-  constructor(private router:Router) { }
+  isLoading : boolean = true
+  currentPage : number = 1
+  list : SalePostModel[] = []
+  private subscription: Subscription = new Subscription();
+
+  constructor(private router:Router, private saleService : SalePostService) { }
 
   ngOnInit() {
-
-    let itemModel:ItemModel = new ItemModel(
-      0,
-      "MewtwoTest",
-      "https://cardcollection.fr/img/cms/Dos_carte_pokemon.jpg",
-      "Set de base",
-      "20/105"
-    )
-    this.salePosts = 
-    [
-      {"salePostId":1,"price":20,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true, "merch_id": 1,"merch_price":2},
-      {"salePostId":2,"price":14,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
-      {"salePostId":3,"price":2,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
-      {"salePostId":4,"price":15,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
-      {"salePostId":5,"price":25,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
-      {"salePostId":6,"price":27,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
-      {"salePostId":7,"price":234,"isPublic":false,"remarks":"Super remarques","gradingId":1,"itemId":itemModel, "userId": 1, "statePostId": "C", "pictures": this.pictures, "merch_remarks" : "cool","merch_public": true,"merch_id":1,"merch_price":2},
-    ];
+    this.subscription.add(
+      this.getSales().subscribe()
+    );
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  onIonInfinite(ev : any) {
+    this.currentPage++
+    setTimeout(() => {
+      if(ev !== null) {
+        (ev as InfiniteScrollCustomEvent).target.complete();
+      }
+      this.subscription.add(
+        this.getSales().subscribe()
+      );
+    }, 1000);
+  }
+  getSales() {
+   return this.saleService.getPublicSalePosts(this.currentPage).pipe(
+     filter(value => value !== null),
+     tap(val => {
+       this.isLoading = false
+       if(val.body !== null){
+         this.list = this.list.concat(val.body);
+       }
+     }),
+     map(response => response.body),
+   )
   }
 
   redirectToAddPost(sale_post_id: number) {

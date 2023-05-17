@@ -4,8 +4,8 @@
 </div>
 
 <swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
-  <swiper-slide *ngFor="let salePost of salePosts" style="margin: 15px; max-width: 200px;">
-    <app-sale-post-card [salePost]="salePost"></app-sale-post-card>
+  <swiper-slide *ngFor="let post of salePost | async; index as position" style="margin: 15px; max-width: 200px;">
+    <app-sale-post-card [salePost]="post"></app-sale-post-card>
   </swiper-slide>
 </swiper-container>
 
