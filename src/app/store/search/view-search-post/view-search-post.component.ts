@@ -33,5 +33,4 @@ export class ViewSearchPostComponent {
       tap(_ => this.loading = false),
       map(response => response.body),)
   }
-
 }

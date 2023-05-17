@@ -1,19 +1,44 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import {IonContent} from "@ionic/angular";
 import {Router} from "@angular/router";
+import {PokemonItemReferenceModel} from "../core/models/pokemon-item-reference.model";
+import {debounceTime, distinctUntilChanged, map, Observable, startWith, Subject, switchMap, takeUntil, tap} from "rxjs";
+import {SearchReferenceComponent} from "./add-reference-post/search-reference/search-reference.component";
+import {SearchService} from "../core/services/SearchService/search.service";
+import {ItemSearchResponseModel} from "../core/models/item-search-response.model";
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.page.html',
   styleUrls: ['./add-post.page.scss'],
 })
-export class AddPostPage implements OnInit {
+export class AddPostPage implements OnDestroy {
   @ViewChild(IonContent) content!: IonContent;
-  constructor(private router:Router) {
+  @ViewChild(SearchReferenceComponent) searchComponent!: SearchReferenceComponent;
+  private unsubscribe$ = new Subject<void>();
+  public loading: boolean = true;
+  constructor(private router:Router, private searchService:SearchService) {
   }
-
+public searchResults$!: Observable<PokemonItemReferenceModel[]>
   saleSelected = true;
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+     this.searchResults$ = this.searchComponent.valueSubject.asObservable().pipe(
+      takeUntil(this.unsubscribe$),
+      startWith(''),
+      debounceTime(500),
+      distinctUntilChanged(),
+      tap(() => this.loading = true),
+      switchMap(value => this.searchService.SearchReference(value)),
+      tap(() => this.loading = false)
+     )
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   scrollToTop() {
@@ -27,5 +52,9 @@ export class AddPostPage implements OnInit {
     else{
       this.router.navigateByUrl(`/tabs/add/sale/${$event}`)
     }
+  }
+
+  changeResults($event: Observable<PokemonItemReferenceModel[]>) {
+      console.log($event)
   }
 }

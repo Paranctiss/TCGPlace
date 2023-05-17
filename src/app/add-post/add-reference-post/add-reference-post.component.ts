@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PokemonService} from "../../core/services/PokemonService/pokemon.service";
 import {PokemonItemReferenceModel} from "../../core/models/pokemon-item-reference.model";
 import {Observable} from "rxjs";
@@ -10,18 +10,21 @@ import {Observable} from "rxjs";
 })
 export class AddReferencePostComponent implements OnInit {
 
+  @Input() ReferencesResults$!: Observable<PokemonItemReferenceModel[]>
+  @Input() loading!: boolean
   @Output() selectRef: EventEmitter<string> = new EventEmitter();
 
-  loading:boolean = true;
+  //loading:boolean = true;
 
   ReferencesList$!: Observable<PokemonItemReferenceModel[]>;
 
   constructor(private pokemonService:PokemonService) {
-    this.ReferencesList$ = this.pokemonService.GetAllReference()
+    //this.ReferencesList$ = this.pokemonService.GetAllReference()
   }
 
   ngOnInit(): void {
   }
+
 
   SelectReference(reference:PokemonItemReferenceModel){
     this.selectRef.emit(reference.idCard);

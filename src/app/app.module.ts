@@ -14,23 +14,23 @@ import {StorePageModule} from "./store/store.module";
 import { ViewSearchPostComponent } from './store/search/view-search-post/view-search-post.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LikesComponent,
-    ViewSearchPostComponent
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-    CoreModule,
-    StorePageModule
-  ],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi : true}],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [
+        AppComponent,
+        LikesComponent,
+        ViewSearchPostComponent,
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        CoreModule,
+        StorePageModule
+    ],
+    providers: [
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}],
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

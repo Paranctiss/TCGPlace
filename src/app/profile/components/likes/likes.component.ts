@@ -15,8 +15,11 @@ export class LikesComponent {
   }
 
   likedSearchPosts$!: Observable<LikedSearchPostResponseModel[]>
+  likedSalePosts$!: Observable<LikedSearchPostResponseModel[]>
   loading: boolean = true;
+  saleSelected: boolean = true;
   ngOnInit() {
       this.likedSearchPosts$ = this.likedSearchPostService.GetLikedSearchPost()
+      this.likedSalePosts$ = this.likedSearchPostService.GetLikedSearchPost()
   }
 }
