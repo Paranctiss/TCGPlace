@@ -17,10 +17,10 @@ import { UserService } from 'src/app/core/services/UserService/user.service';
 })
 export class AddSalePostComponent implements OnInit {
 
-  constructor(public photoService: PhotoService, 
+  constructor(public photoService: PhotoService,
               private pokemonService:PokemonService,
               private addSalePostService: AddSalePostService,
-              private toastService:ToastService, 
+              private toastService:ToastService,
               private router:Router,
               public formBuilder: FormBuilder,
               private userService: UserService,
@@ -53,7 +53,7 @@ export class AddSalePostComponent implements OnInit {
     this.loading = true;
     let salePost:SalePostModel = this.getFormData()
     let lesPictures = await this.photoService.CreatePicture()
-    salePost.pictures = lesPictures;
+    salePost.salePicturePosts = lesPictures;
     this.addSalePostService.PostSalePost(salePost).subscribe({
       next: (response) => {
         if(response.status == 201){
