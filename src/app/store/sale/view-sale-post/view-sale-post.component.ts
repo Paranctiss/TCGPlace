@@ -14,7 +14,7 @@ import { HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-view-sale-post',
   templateUrl: './view-sale-post.component.html',
-  styleUrls: ['./view-sale-post.component.css']
+  styleUrls: ['./view-sale-post.component.scss']
 })
 export class ViewSalePostComponent {
   SalePost$:Observable<SalePostModel | null> = of(new SalePostModel())
@@ -30,33 +30,16 @@ export class ViewSalePostComponent {
   isDisabled:boolean = true;
   salePost!: SalePostModel | null;
 
-
-
   ngOnInit() {
     this.SalePost$ = this.salePostService.getSingleSalePost(this.route.snapshot.params['id']).pipe(
       filter((value) => value !== null),
       tap(_ => this.loading = false),
       map(response => response.body),
     )
-    this.SalePost$.subscribe((salePost) => {
-      console.log(salePost);
-      this.salePost = salePost;
-    });
-  }
 
-  getSingleSalePost(id: any) {
-
-  }
-  //this.salePost$ = this.salePostService.getSingleSalePost(id
-    // this.salePostService.getSingleSalePost(id).subscribe((response) => {
-    //   if (response.body) {
-    //     this.salePost = response.body;
-    //     console.log(response.body)
-    //     console.log(this.salePost)
-    //     console.log(this.salePost)
-    //   }
-    // });
-  getFormData(){
+     this.SalePost$.subscribe(salePost => {
+      console.log(salePost?.salePostId);
+     });
 
   }
 }

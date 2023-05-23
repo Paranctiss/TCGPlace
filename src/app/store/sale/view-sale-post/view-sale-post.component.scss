@@ -1,0 +1,60 @@
+.formBackgrounf{
+    background-color: red;
+}
+
+.spin{
+    position: relative;
+    left: 45%;
+  }
+  .pageSpin{
+    position: relative;
+    left: 45%;
+    top: 50%;
+  }
+
+.ion-label-paragraphe{
+    color:black;
+    font-size: 14px;
+}
+
+.btnActions{
+    -webkit-padding-start: 4.5%;
+    -webkit-padding-end: 4.5%;
+    --padding-bottom: 5%px;
+  }
+
+.btnActionsTop{
+    margin-top: 0%;
+  }
+
+.card{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+.cardMainInformations{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+ion-button{
+  padding-bottom: 1.5%;
+  --border-radius: none;
+}
+
+ion-item-divider {
+  --background: #f4f5f8;
+}
+
+ion-item{
+  --padding-top:5%;
+  --padding-bottom:5%;
+  --padding-left:5%;
+  --padding-right: 5%;
+}
+
+.line-1 {
+  border-bottom: 1px solid rgb(175, 175, 175);
+  width: 90%;
+  margin: auto;
+}
