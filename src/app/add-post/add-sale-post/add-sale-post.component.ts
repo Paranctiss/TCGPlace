@@ -53,7 +53,7 @@ export class AddSalePostComponent implements OnInit {
     this.loading = true;
     let salePost:SalePostModel = this.getFormData()
     let lesPictures = await this.photoService.CreatePicture()
-    salePost.salePicturePosts = lesPictures;
+    salePost.pictures = lesPictures;
     this.addSalePostService.PostSalePost(salePost).subscribe({
       next: (response) => {
         if(response.status == 201){

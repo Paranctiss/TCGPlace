@@ -16,5 +16,6 @@ export class SalePostModel extends MerchPostModel{
   statePostId! : string
   createdAt! : Date
   grading!: GradingModel;
-  salePicturePosts!: PictureModel[];
+  pictures!: PictureModel[];
+  salePicturePosts! : string[];
 }
