@@ -24,10 +24,10 @@
 
             <div class="cardMainInformations">
                 <h4><b>{{salePost.name}}</b></h4>
+                <p style="font-size: 14px;"><b>Etat :</b> {{salePost.grading.name}}</p>
+                <p style="font-size: 20px;"><b>{{salePost.price}} €</b></p>
                 <p style="font-size: 14px;">Extension : IdExtension | Nom Extension</p>
                 <p style="font-size: 11px;">Mise en ligne le {{salePost.createdAt | date:'dd/MM/yyyy'}} à {{salePost.createdAt | date:'HH'}}h{{salePost.createdAt | date:'mm'}}</p>
-                <p style="font-size: 14px;"><b>{{salePost.price}} €</b></p>
-                <p style="font-size: 14px;"><b>Etat :</b> {{salePost.grading.name}}</p>
             </div>      
             <div class="btnActions">
                 <ion-button expand="block">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
@@ -57,7 +57,7 @@
         <ion-item-divider></ion-item-divider>
 
         <div class="otherUserPosts">
-          <p>Autres recherches de ce vendeur :</p>
+          <p>Autres annonces de vente de ce vendeur :</p>
           <div style="width: 100%; text-align: right">
             <a>Tout voir →</a>
           </div>
