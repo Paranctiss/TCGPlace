@@ -19,4 +19,8 @@ export class SalePostService{
   getSingleSalePost(id:any): Observable<HttpResponse<SalePostModel>>{
     return this.http.get<SalePostModel>(`${this.apiURL}/SalePost/${id}`,{observe: 'response'})
   }
+
+  getSomeSalePostForUser(userId:number, pageSize:number): Observable<HttpResponse<SalePostModel[]>>{
+    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/user/${userId}/${pageSize}`,{observe: 'response'})
+  }
 }

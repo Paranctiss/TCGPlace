@@ -1,6 +1,7 @@
 import {MerchPostModel} from "./merch-post-model";
 import {ItemModel} from "./item.model";
 import { PictureModel } from "./pictures.model";
+import { GradingModel } from "./grading.model";
 
 export class SalePostModel extends MerchPostModel{
   gradingId!: number;
@@ -13,5 +14,7 @@ export class SalePostModel extends MerchPostModel{
   remarks!: string;
   userId!: number;
   statePostId! : string
+  createdAt! : Date
+  grading!: GradingModel;
   salePicturePosts!: PictureModel[];
 }

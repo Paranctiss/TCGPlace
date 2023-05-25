@@ -12,12 +12,14 @@ import {CoreModule} from "./core/core.module";
 import { LikesComponent } from './profile/components/likes/likes.component';
 import {StorePageModule} from "./store/store.module";
 import { ViewSearchPostComponent } from './store/search/view-search-post/view-search-post.component';
+import { ViewSalePostComponent } from './store/sale/view-sale-post/view-sale-post.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LikesComponent,
         ViewSearchPostComponent,
+        ViewSalePostComponent
     ],
     imports: [
         BrowserModule,

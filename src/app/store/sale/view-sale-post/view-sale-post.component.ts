@@ -1,15 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {PokemonService} from "../../../core/services/PokemonService/pokemon.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {filter, map, Observable, of, tap} from "rxjs";
 import {PokemonItemReferenceModel} from "../../../core/models/pokemon-item-reference.model";
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {UserService} from "../../../core/services/UserService/user.service";
-import {ToastService} from "../../../core/services/toast.service";
-import { AddSearchPostService } from 'src/app/add-post/services/add-search-post.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { SalePostService } from '../services/salePost.service';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-sale-post',
@@ -18,7 +14,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class ViewSalePostComponent {
   SalePost$:Observable<SalePostModel | null> = of(new SalePostModel())
-  UserSearchPost$:Observable<SalePostModel[] | null> = of([])
+  UserSalePost$:Observable<SalePostModel[] | null> = of([])
   loading: boolean = true;
   constructor(private salePostService:SalePostService,
               private route:ActivatedRoute,
@@ -37,9 +33,10 @@ export class ViewSalePostComponent {
       map(response => response.body),
     )
 
-     this.SalePost$.subscribe(salePost => {
-      console.log(salePost?.salePostId);
-     });
-
+    const userID = this.userService.GetCurrentUserID()
+    this.UserSalePost$ = this.salePostService.getSomeSalePostForUser(userID, 5).pipe(
+      filter((value) => value !== null),
+      tap(_ => this.loading = false),
+      map(response => response.body),)
   }
 }

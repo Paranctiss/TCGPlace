@@ -1,62 +1,14 @@
 <ion-content>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title align="center">Détails article</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title align="center">Détails article</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-    <!--
-    <ion-content>
-          <ion-card-content *ngIf="SalePost$ | async as salePost">
-            <div>
-              Remarks: {{ salePost.remarks }}
-            </div>
-            <div>
-              User ID: {{ salePost.userId }}
-            </div>
-            <p class="title">Dracaufeu</p>
-            <p class="title">l'image</p>
-            <p class="grading">{{salePost.gradingId}}</p>
-            <b class="price">{{salePost.price}}€</b>
-            <p style="color: #9d9fa6">Remarques liées à la recherche :</p>
-            <p class="remarks">{{salePost.remarks}}</p>
-          </ion-card-content>
-
-      </ion-content>
-      -->
-
-  
-    <!--   ------------------------------------------------------------------------------------------  -->
-
-    <!--
-    <div class="cardInformations"  *ngIf="this.SalePost$ | async as salePost">
-        <ion-img src="https://assets.tcgdex.net/fr/base/base1/4/high.webp" style="width: 150px; margin: auto"></ion-img>
-  
-        <ion-item lines="full">
-          <ion-avatar slot="start">
-            <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-          <ion-label>
-            SuperDresseur45
-          </ion-label>
-          <ion-icon name="mail-outline" slot="end"></ion-icon>
-        </ion-item>
-  
-        <p class="title">{{salePost.itemId.itemName}}</p>
-        <p class="grading">{{salePost.gradingId}}</p>
-        <b class="price">{{salePost.price}}€</b>
-        <p style="color: #9d9fa6">Remarques liées à la recherche :</p>
-        <p class="remarks">{{salePost.remarks}}</p>
-      </div>
-    -->
-
-<!--   ------------------------------------------------------------------------------------------  -->
-
-
-  <div>
+  <div *ngIf="SalePost$ | async as salePost">
     <form novalidate>
-        <div class="card" *ngIf="SalePost$ | async as salePost" align="center" style="margin-top: 10px">
-            <ion-img src="https://assets.tcgdex.net/fr/base/base1/4/high.webp" style="width: 150px"></ion-img>
+        <div class="card" align="center" style="margin-top: 10px">
+            <ion-img src="{{salePost.image}}/high.webp" style="width: 150px"></ion-img>
         </div>
 
         <div class="cardInformations">
@@ -71,14 +23,12 @@
             </ion-item>
 
             <div class="cardMainInformations">
-                <h4><b>Dracaufeu</b></h4>
+                <h4><b>{{salePost.name}}</b></h4>
                 <p style="font-size: 14px;">Extension : IdExtension | Nom Extension</p>
-                <p style="font-size: 11px;">Mise en ligne il y a X heures</p>
-                <p style="font-size: 14px;"><b>20 €</b></p>
-                <p style="font-size: 14px;"><b>Etat :</b>Neuf</p>
-            </div>
-
-      
+                <p style="font-size: 11px;">Mise en ligne le {{salePost.createdAt | date:'dd/MM/yyyy'}} à {{salePost.createdAt | date:'HH'}}h{{salePost.createdAt | date:'mm'}}</p>
+                <p style="font-size: 14px;"><b>{{salePost.price}} €</b></p>
+                <p style="font-size: 14px;"><b>Etat :</b> {{salePost.grading.name}}</p>
+            </div>      
             <div class="btnActions">
                 <ion-button expand="block">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
                 <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
@@ -88,40 +38,41 @@
               </div>
               <ion-item-divider color="white"></ion-item-divider>
               <ion-item-divider></ion-item-divider>
-      <ng-template #loading ><div class="spin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div></ng-template>
+        <ng-template #loading ><div class="spin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div></ng-template>
   
-      <div class="cardMainInformations" style="padding-top: 5%;">
-        <ion-label text-wrap>
-            <b>Remarques :</b>
-            <br/>
-            <p style="padding-top: 2%;padding-bottom: 5%;" class="ion-label-paragraphe">Acheté il y a 1 an</p>
-        </ion-label>
-       </div>
+        <!--
+          #Balise Line
+          <div class="line-1"></div> 
+        -->
 
-       <div class="line-1"></div>
+        <div style="padding-top: 5%;" class="cardMainInformations">
+          <ion-label text-wrap>
+              <b>Remarques sur l'article :</b>
+              <br/>
+              <p style="padding-top: 2%;" class="ion-label-paragraphe">{{salePost.remarks}}</p>
+          </ion-label>
+        </div>
 
-      <div style="padding-top: 5%;" class="cardMainInformations">
-        <ion-label text-wrap>
-            <b>Descirption de l'article :</b>
-            <br/>
-            <p style="padding-top: 2%;" class="ion-label-paragraphe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam velit nec tristique fermentum. In id quam non justo laoreet fermentum. Sed consectetur nulla nec ligula pharetra, a commodo magna bibendum. Duis convallis metus ac tincidunt vulputate. Mauris id justo lectus. Donec mattis purus ut est varius consequat. Pellentesque consectetur, sapien ac efficitur fringilla, lectus dolor auctor dolor, at posuere metus mauris vel orci. Morbi auctor rutrum feugiat. Nam varius fermentum orci non aliquet. Sed commodo risus vitae erat gravida, at convallis lacus cursus. In eget tincidunt libero.</p>
-        </ion-label>
-       </div>
+        <ion-item-divider color="white"></ion-item-divider>
+        <ion-item-divider></ion-item-divider>
 
-       <ion-item-divider color="white"></ion-item-divider>
-      <ion-item-divider></ion-item-divider>
-
-
-    </div>
-
+        <div class="otherUserPosts">
+          <p>Autres recherches de ce vendeur :</p>
+          <div style="width: 100%; text-align: right">
+            <a>Tout voir →</a>
+          </div>
+        </div>
+        <swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
+          <swiper-slide *ngFor="let salePost of UserSalePost$ | async as user" style="margin: 15px; max-width: 200px;">
+            <app-sale-post-card [salePost]="salePost"></app-sale-post-card>
+          </swiper-slide>
+        </swiper-container>
+      </div>
     </form>
   </div>
     <ng-template #pageLoading>
       <div class="pageSpin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div>
     </ng-template>
   </ion-content>
-
-
-  <!-- (click)="ionicForm.valid && submitForm()" -->
   
   
