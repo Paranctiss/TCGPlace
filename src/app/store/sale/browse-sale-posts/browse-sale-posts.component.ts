@@ -57,8 +57,7 @@ export class BrowseSalePostsComponent implements OnInit, OnDestroy {
    )
   }
 
-  redirectToAddPost(sale_post_id: number) {
-    console.log(sale_post_id);
+  redirectToAddPost(sale_post_id: string) {
     this.router.navigateByUrl(`/tabs/store/sale/${sale_post_id}`)
   }
 }

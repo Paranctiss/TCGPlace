@@ -3,9 +3,14 @@ import {ItemModel} from "./item.model";
 import { PictureModel } from "./pictures.model";
 import { GradingModel } from "./grading.model";
 
+type GUID = string & { isGuid: true};
+function guid(guid: string) : GUID {
+  return  guid as GUID;
+}
+
 export class SalePostModel extends MerchPostModel{
   gradingId!: number;
-  id!: number;
+  id!: GUID;
   itemId!: string;
   image!: string;
   isPublic!: boolean;
@@ -18,4 +23,5 @@ export class SalePostModel extends MerchPostModel{
   grading!: GradingModel;
   pictures!: PictureModel[];
   salePicturePosts! : string[];
+  liked!: boolean;
 }

@@ -10,7 +10,8 @@
       <p>{{salePost.remarks}}</p>
     </div>
     <div>
-      <ion-icon name="heart-outline" size="large"></ion-icon>
+      <ion-icon *ngIf="!this.salePost.liked" name="heart-outline" size="large" (click)="LikeSalePost(this.salePost.id, $event)"></ion-icon>
+      <ion-icon *ngIf="this.salePost.liked" name="heart" color="danger" size="large" (click)="UnLikeSalePost(this.salePost.id, $event)"></ion-icon>
     </div>
   </ion-card-content>
 </ion-card>

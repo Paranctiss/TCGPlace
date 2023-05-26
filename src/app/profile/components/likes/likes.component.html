@@ -11,17 +11,15 @@
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-<div *ngIf="saleSelected; else salePost">
-  <ion-grid [fixed]="true">
+  <ion-grid [fixed]="true" *ngIf="saleSelected; else salePost">
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let post of likedSalePosts$ | async ; index as position">
-          <app-search-post-card [searchPost]="post.searchPost"></app-search-post-card>
+          <app-sale-post-card [salePost]="post.salePost"></app-sale-post-card>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-grid>
-</div>
 <ng-template #salePost>
   <ion-grid [fixed]="true">
     <ion-grid>
