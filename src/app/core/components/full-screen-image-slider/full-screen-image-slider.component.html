@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="dismiss()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <swiper-container pagination rewind>
+      <ion-slide>
+        <ion-img [src]="imageReference"></ion-img>
+      </ion-slide>
+      <ion-slide *ngFor="let image of images">
+        <ion-img [src]="image"></ion-img>
+      </ion-slide>
+    </swiper-container>
+  </ion-content>  

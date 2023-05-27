@@ -6,6 +6,9 @@ import {SalePostModel} from "../../../core/models/sale-post.model";
 import {UserService} from "../../../core/services/UserService/user.service";
 import { FormGroup } from '@angular/forms';
 import { SalePostService } from '../services/salePost.service';
+import { ModalController } from '@ionic/angular';
+import { FullScreenImageComponent } from 'src/app/core/components/full-screen-image/full-screen-image.component';
+import { FullScreenImageSliderComponent } from 'src/app/core/components/full-screen-image-slider/full-screen-image-slider.component';
 
 @Component({
   selector: 'app-view-sale-post',
@@ -18,6 +21,7 @@ export class ViewSalePostComponent {
   loading: boolean = true;
   constructor(private salePostService:SalePostService,
               private route:ActivatedRoute,
+              private modalCtrl: ModalController,
               private userService:UserService) {
   }
 
@@ -38,5 +42,34 @@ export class ViewSalePostComponent {
       filter((value) => value !== null),
       tap(_ => this.loading = false),
       map(response => response.body),)
+  }
+
+  async openFullscreenImage(imageUrl: string) {
+    const modal = await this.modalCtrl.create({
+      component: FullScreenImageComponent,
+      componentProps: {
+        imageUrl: imageUrl
+      }
+      
+    });
+
+    return await modal.present();
+  }
+
+  async openFullscreenSlider(salePostPictureReference: string, salePostPictures: string[]) {
+    const modal = await this.modalCtrl.create({
+      component: FullScreenImageSliderComponent,
+      componentProps: {
+        imageReference: salePostPictureReference,
+        images: salePostPictures
+      }
+      
+    });
+
+    return await modal.present();
+  }
+
+  test(sp: SalePostModel){
+    console.log(sp)
   }
 }

@@ -8,7 +8,7 @@
   <div *ngIf="SalePost$ | async as salePost">
     <form novalidate>
         <div class="card" align="center" style="margin-top: 10px">
-            <ion-img src="{{salePost.image}}/high.webp" style="width: 150px"></ion-img>
+            <ion-img src="{{salePost.image}}/high.webp" (click)="openFullscreenImage(salePost.image+'/high.webp')"  style="width: 150px"></ion-img>
         </div>
 
         <div class="cardInformations">
@@ -28,7 +28,14 @@
                 <p style="font-size: 20px;"><b>{{salePost.price}} €</b></p>
                 <p style="font-size: 14px;">Extension : IdExtension | Nom Extension</p>
                 <p style="font-size: 11px;">Mise en ligne le {{salePost.createdAt | date:'dd/MM/yyyy'}} à {{salePost.createdAt | date:'HH'}}h{{salePost.createdAt | date:'mm'}}</p>
-            </div>      
+            </div>
+
+            <swiper-container slides-per-view="auto" free-mode="true" class="pb-1 pt-1">
+              <swiper-slide *ngFor="let salePostPicture of salePost.salePicturePosts; index as position" style="margin: 5px; max-width: 160px;">
+                <ion-img src="{{salePostPicture}}" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
+              </swiper-slide>
+            </swiper-container>
+
             <div class="btnActions">
                 <ion-button expand="block">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
                 <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
