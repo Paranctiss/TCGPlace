@@ -30,3 +30,28 @@ ion-title{
 ion-img:hover{
   cursor: pointer;
 }
+
+.photo-container { 
+  position: relative; 
+  /* si vos images ne remplissent pas tout l'espace, vous pouvez ajouter : */
+   /* width: 100%; */ 
+   /* height: 0; */
+    /* padding-bottom: 75%; (ou tout autre pourcentage pour définir l'aspect ratio) */
+  } 
+  
+  .photo-container img { 
+    width: 100%; 
+    height: 100%;
+     object-fit: cover; /* pour maintenir l'aspect ratio de l'image */
+    } 
+    
+    .delete-badge {
+       position: absolute; 
+       top: -5px; /* ajustez ces valeurs comme vous le souhaitez */ 
+       right: -5px; 
+       border-radius: 50%;
+       font-size: 1.2em; 
+       height: 25px; 
+       width: 25px; 
+       text-align: center;
+      }

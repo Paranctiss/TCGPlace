@@ -11,6 +11,7 @@ import { SalePostModel } from 'src/app/core/models/sale-post.model';
 import { AddSalePostService } from '../services/add-sale-post.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { UserService } from 'src/app/core/services/UserService/user.service';
+import { UserPhoto } from '../../core/services/photo.service';
 
 @Component({
   selector: 'app-add-sale-post',
@@ -33,6 +34,7 @@ export class AddSalePostComponent implements OnInit {
   ionicForm!: FormGroup;
   loading: boolean = false;
   private selectedImage!: HTMLIonImgElement;
+  public photos: UserPhoto[] = [];
 
   ngOnInit() {
     this.reference$ = this.pokemonService.GetReferenceById(this.route.snapshot.params['id'])
@@ -42,6 +44,11 @@ export class AddSalePostComponent implements OnInit {
   addPhotoToGallery(){
     this.photoService.addNewToGallery();
   }
+
+  async deletePhoto(photo: UserPhoto) {
+    await this.photoService.deletePhoto(photo);
+  }
+
 
   buildIonicForm(){
     this.ionicForm = this.formBuilder.group({

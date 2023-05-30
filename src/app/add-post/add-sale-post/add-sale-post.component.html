@@ -45,7 +45,10 @@
       <ion-grid class="photos">
           <ion-row>
             <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-              <ion-img [src]="photo.webviewPath" (click)="openFullscreenImage(photo.webviewPath)" style="object-fit:cover;"></ion-img>
+              <div class="photo-container">
+                <ion-img [src]="photo.webviewPath" (click)="openFullscreenImage(photo.webviewPath)" style="object-fit:cover;"></ion-img>
+                <ion-badge color="danger" class="delete-badge" (click)="deletePhoto(photo)">X</ion-badge>
+              </div>
             </ion-col>
             <ion-col>
               <ion-button

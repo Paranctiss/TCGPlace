@@ -6,6 +6,7 @@ import {Preferences} from '@capacitor/preferences';
 import { read } from 'fs';
 import {PictureModel} from 'src/app/core/models/pictures.model'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -65,8 +66,9 @@ export class PhotoService {
       directory: Directory.Data
     });
 
-    // Use webPath to display the new image instead of base64 since it's
-    // already loaded into memory
+
+    // // Use webPath to display the new image instead of base64 since it's
+    // // already loaded into memory
     return {
       filepath: fileName,
       webviewPath: photo.webPath
@@ -90,6 +92,30 @@ export class PhotoService {
     reader.readAsDataURL(blob);
   });
 
+  async deletePhoto(photo: UserPhoto) {
+    try {
+      // Supprime la photo du système de fichiers
+      await Filesystem.deleteFile({
+        path: photo.filepath,
+        directory: Directory.Data
+      });
+  
+      // Supprime la photo de la collection
+      const index = this.photos.findIndex((p) => p.filepath === photo.filepath);
+      if (index !== -1) {
+        this.photos.splice(index, 1);
+      }
+  
+      // Met à jour les préférences de stockage avec la nouvelle collection
+      await Preferences.set({
+        key: this.PHOTO_STORAGE,
+        value: JSON.stringify(this.photos),
+      });
+    } catch (error) {
+      console.error("Une erreur s'est produite lors de la suppression de la photo :", error);
+    }
+  }
+  
   public async CreatePicture(): Promise<PictureModel[]> {
     var pictures:PictureModel[] = [];
 
