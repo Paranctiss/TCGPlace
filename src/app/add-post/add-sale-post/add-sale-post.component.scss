@@ -7,6 +7,16 @@ ion-checkbox::part(container) {
   border: 2px solid #3880ff;
 }
 
+.spin{
+  position: relative;
+  left: 45%;
+}
+.pageSpin{
+  position: relative;
+  left: 45%;
+  top: 50%;
+}
+
 .photos{
   margin: 8px;
   padding-left: 5px;

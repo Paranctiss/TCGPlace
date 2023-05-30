@@ -39,7 +39,7 @@
         <ion-label>Annonce visible</ion-label>
       </ion-item>
     </form>
-  </div>
+
       <ion-label style="padding-left: 40px;">Photos :</ion-label>
       <div>
       <ion-grid class="photos">
@@ -59,13 +59,14 @@
           </ion-row>
         </ion-grid>
       </div>
+  </div>
     <ng-template #pageLoading>
       <div class="pageSpin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div>
     </ng-template>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar *ngIf="!loading">
     <ion-button
       type="submit"
       (click)="submitForm()"

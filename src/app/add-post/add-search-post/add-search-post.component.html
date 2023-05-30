@@ -45,7 +45,7 @@
   </ng-template>
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar *ngIf="!loading">
     <ion-button
       type="submit"
       (click)="ionicForm.valid && submitForm()"
