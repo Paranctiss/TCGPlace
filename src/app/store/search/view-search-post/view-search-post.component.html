@@ -1,33 +1,56 @@
 <ion-content>
-<ion-header>
-  <ion-title>Annonce de recherche</ion-title>
-</ion-header>
-    <div class="cardInformations"  *ngIf="this.SearchPost$ | async as searchPost">
-      <ion-img src="{{searchPost.image}}/high.webp" style="width: 150px; margin: auto"></ion-img>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title align="center">Annonce de recherche</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div *ngIf="this.SearchPost$ | async as searchPost">
 
+    <div class="card" align="center" style="margin-top: 10px">
+      <ion-img src="{{searchPost.image}}/high.webp" style="width: 150px; margin: auto"></ion-img>
+    </div>
+
+    <div class="cardInformations">
       <ion-item lines="full">
         <ion-avatar slot="start">
-          <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
         <ion-label>
-          SuperDresseur45
+        SuperDresseur45
         </ion-label>
         <ion-icon name="mail-outline" slot="end"></ion-icon>
       </ion-item>
 
-      <p class="title">{{searchPost.name}}</p>
-      <p class="grading">{{searchPost.grading.name}}</p>
-      <b class="price">{{searchPost.price}}€</b>
-      <p style="color: #9d9fa6">Remarques liées à la recherche :</p>
-      <p class="remarks">{{searchPost.remarks}}</p>
+      <div class="cardMainInformations">
+        <h4><b>{{searchPost.name}}</b></h4>
+        <p style="font-size: 14px;"><b>Etat :</b> {{searchPost.grading.name}}</p>
+        <p style="font-size: 20px;"><b>{{searchPost.price}} €</b></p>
+        <p style="font-size: 14px;">Extension : IdExtension | Nom Extension</p>
+      </div>
+
+      <div class="btnActions">
+        <ion-button expand="block" (click)="redirectToPaymentModule()">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+        <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
+        <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
+        <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
+        <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+      </div>
+      <ion-item-divider color="white"></ion-item-divider>
+      <ion-item-divider></ion-item-divider>
+
+      <div style="padding-top: 5%;" class="cardMainInformations">
+        <ion-label text-wrap>
+            <b>Remarques sur l'article :</b>
+            <br/>
+            <p style="padding-top: 2%;" class="ion-label-paragraphe">{{searchPost.remarks}}</p>
+        </ion-label>
+      </div>
+
+      <ion-item-divider color="white"></ion-item-divider>
+      <ion-item-divider></ion-item-divider>
     </div>
 
-  <div class="btnActions">
-    <ion-button expand="full">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
-    <ion-button expand="full" color="secondary">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
-    <ion-button expand="full" color="tertiary">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
-    <ion-button expand="full" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
-  </div>
 
   <div class="otherUserPosts">
     <p>Autres recherches de ce vendeur :</p>
@@ -41,7 +64,7 @@
     </swiper-slide>
   </swiper-container>
 
-
+</div>
 </ion-content>
 <!-- <ion-footer>
     <ion-button

@@ -4,7 +4,6 @@ import {filter, map, Observable, of, tap} from "rxjs";
 import {PokemonItemReferenceModel} from "../../../core/models/pokemon-item-reference.model";
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {UserService} from "../../../core/services/UserService/user.service";
-import { FormGroup } from '@angular/forms';
 import { SalePostService } from '../services/salePost.service';
 import { ModalController } from '@ionic/angular';
 import { FullScreenImageComponent } from 'src/app/core/components/full-screen-image/full-screen-image.component';
@@ -22,11 +21,11 @@ export class ViewSalePostComponent {
   constructor(private salePostService:SalePostService,
               private route:ActivatedRoute,
               private modalCtrl: ModalController,
-              private userService:UserService) {
+              private userService:UserService,
+              private router:Router) {
   }
 
   reference$!: Observable<PokemonItemReferenceModel>
-  ionicForm!: FormGroup;
   isDisabled:boolean = true;
   salePost!: SalePostModel | null;
 
@@ -71,5 +70,9 @@ export class ViewSalePostComponent {
 
   test(sp: SalePostModel){
     console.log(sp)
+  }
+
+  redirectToPaymentModule() {
+    this.router.navigateByUrl(`/payment`)
   }
 }

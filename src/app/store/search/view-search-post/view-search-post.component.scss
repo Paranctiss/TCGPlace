@@ -1,37 +1,74 @@
-.cardInformations{
-  margin-left: 5%;
-  margin-right: 5%;
+.formBackgrounf{
+  background-color: red;
 }
 
-.cardInformations p {
-  margin-bottom: 3px;
-  margin-top: 3px;
+.spin{
+  position: relative;
+  left: 45%;
+}
+.pageSpin{
+  position: relative;
+  left: 45%;
+  top: 50%;
 }
 
-.userCard{
-  border-bottom: lightslategray 1px solid;
-}
-
-.title{
-  font-size: 1.1em;
-  font-weight: bolder;
-}
-
-.grading{
-  font-style: italic;
+.ion-label-paragraphe{
+  color:black;
+  font-size: 14px;
 }
 
 .btnActions{
-  margin-top: 20%;
+  -webkit-padding-start: 4.5%;
+  -webkit-padding-end: 4.5%;
+  --padding-bottom: 5%px;
+}
+
+.btnActionsTop{
+  margin-top: 0%;
+}
+
+.card{
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.cardMainInformations{
+padding-left: 5%;
+padding-right: 5%;
+}
+
+swiper-container{
+padding-left: 5%;
+padding-right: 5%;
+}
+
+ion-button{
+padding-bottom: 1.5%;
+--border-radius: 4px;
+}
+
+ion-item-divider {
+--background: #f4f5f8;
+}
+
+ion-item{
+--padding-top:5%;
+--padding-bottom:2%;
+--padding-left:5%;
+--padding-right: 5%;
+}
+
+.line-1 {
+border-bottom: 1px solid rgb(175, 175, 175);
+width: 90%;
+margin: auto;
 }
 
 .otherUserPosts{
-  margin-left: 5%;
-  margin-right: 5%;
+margin-left: 5%;
+margin-right: 5%;
 }
 
 .otherUserPosts p{
-  font-size: 1.3em;
+font-size: 1.3em;
 }

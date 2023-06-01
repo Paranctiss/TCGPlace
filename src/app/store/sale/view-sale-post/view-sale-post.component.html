@@ -6,77 +6,75 @@
   </ion-header>
 
   <div *ngIf="SalePost$ | async as salePost">
-    <form novalidate>
-        <div class="card" align="center" style="margin-top: 10px">
-          <swiper-container slides-per-view="auto" free-mode="true" class="pb-1 pt-1">
-            <swiper-slide style="margin: 5px; max-width: 160px;">
-              <ion-img src="{{salePost.image}}/high.webp" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
-            </swiper-slide>
-            <swiper-slide *ngFor="let salePostPicture of salePost.salePicturePosts; index as position" style="margin: 5px; max-width: 160px;">
-              <ion-img src="{{salePostPicture}}" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
-            </swiper-slide>
-          </swiper-container>
-        </div>
-
-        <div class="cardInformations">
-            <ion-item lines="full">
-                <ion-avatar slot="start">
-                <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                </ion-avatar>
-                <ion-label>
-                SuperDresseur45
-                </ion-label>
-                <ion-icon name="mail-outline" slot="end"></ion-icon>
-            </ion-item>
-
-            <div class="cardMainInformations">
-                <h4><b>{{salePost.name}}</b></h4>
-                <p style="font-size: 14px;"><b>Etat :</b> {{salePost.grading.name}}</p>
-                <p style="font-size: 20px;"><b>{{salePost.price}} €</b></p>
-                <p style="font-size: 14px;">Extension : IdExtension | Nom Extension</p>
-                <p style="font-size: 11px;">Mise en ligne le {{salePost.createdAt | date:'dd/MM/yyyy'}} à {{salePost.createdAt | date:'HH'}}h{{salePost.createdAt | date:'mm'}}</p>
-            </div>
-
-            <div class="btnActions">
-                <ion-button expand="block">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
-                <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
-                <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
-                <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
-                <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
-              </div>
-              <ion-item-divider color="white"></ion-item-divider>
-              <ion-item-divider></ion-item-divider>
-        <ng-template #loading ><div class="spin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div></ng-template>
-  
-        <!--
-          #Balise Line
-          <div class="line-1"></div> 
-        -->
-
-        <div style="padding-top: 5%;" class="cardMainInformations">
-          <ion-label text-wrap>
-              <b>Remarques sur l'article :</b>
-              <br/>
-              <p style="padding-top: 2%;" class="ion-label-paragraphe">{{salePost.remarks}}</p>
-          </ion-label>
-        </div>
-
-        <ion-item-divider color="white"></ion-item-divider>
-        <ion-item-divider></ion-item-divider>
-
-        <div class="otherUserPosts">
-          <p>Autres annonces de vente de ce vendeur :</p>
-          <div style="width: 100%; text-align: right">
-            <a>Tout voir →</a>
-          </div>
-        </div>
-        <swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
-          <swiper-slide *ngFor="let salePost of UserSalePost$ | async as user" style="margin: 15px; max-width: 200px;">
-            <app-sale-post-card [salePost]="salePost"></app-sale-post-card>
+      <div class="card" align="center" style="margin-top: 10px">
+        <swiper-container slides-per-view="auto" free-mode="true" class="pb-1 pt-1">
+          <swiper-slide style="margin: 5px; max-width: 160px;">
+            <ion-img src="{{salePost.image}}/high.webp" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
+          </swiper-slide>
+          <swiper-slide *ngFor="let salePostPicture of salePost.salePicturePosts; index as position" style="margin: 5px; max-width: 160px;">
+            <ion-img src="{{salePostPicture}}" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
           </swiper-slide>
         </swiper-container>
       </div>
-    </form>
+
+      <div class="cardInformations">
+          <ion-item lines="full">
+              <ion-avatar slot="start">
+              <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+              <ion-label>
+              SuperDresseur45
+              </ion-label>
+              <ion-icon name="mail-outline" slot="end"></ion-icon>
+          </ion-item>
+
+          <div class="cardMainInformations">
+              <h4><b>{{salePost.name}}</b></h4>
+              <p style="font-size: 14px;"><b>Etat :</b> {{salePost.grading.name}}</p>
+              <p style="font-size: 20px;"><b>{{salePost.price}} €</b></p>
+              <p style="font-size: 14px;">Extension : IdExtension | Nom Extension</p>
+              <p style="font-size: 11px;">Mise en ligne le {{salePost.createdAt | date:'dd/MM/yyyy'}} à {{salePost.createdAt | date:'HH'}}h{{salePost.createdAt | date:'mm'}}</p>
+          </div>
+
+          <div class="btnActions">
+              <ion-button expand="block" (click)="redirectToPaymentModule()">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+              <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
+              <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
+              <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
+              <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+            </div>
+            <ion-item-divider color="white"></ion-item-divider>
+            <ion-item-divider></ion-item-divider>
+      <ng-template #loading ><div class="spin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div></ng-template>
+
+      <!--
+        #Balise Line
+        <div class="line-1"></div> 
+      -->
+
+      <div style="padding-top: 5%;" class="cardMainInformations">
+        <ion-label text-wrap>
+            <b>Remarques sur l'article :</b>
+            <br/>
+            <p style="padding-top: 2%;" class="ion-label-paragraphe">{{salePost.remarks}}</p>
+        </ion-label>
+      </div>
+
+      <ion-item-divider color="white"></ion-item-divider>
+      <ion-item-divider></ion-item-divider>
+
+      <div class="otherUserPosts">
+        <p>Autres annonces de vente de ce vendeur :</p>
+        <div style="width: 100%; text-align: right">
+          <a>Tout voir →</a>
+        </div>
+      </div>
+      <swiper-container slides-per-view="auto" free-mode="true" class="pb-5">
+        <swiper-slide *ngFor="let salePost of UserSalePost$ | async as user" style="margin: 15px; max-width: 200px;">
+          <app-sale-post-card [salePost]="salePost"></app-sale-post-card>
+        </swiper-slide>
+      </swiper-container>
+    </div>
   </div>
     <ng-template #pageLoading>
       <div class="pageSpin"><ion-spinner name="crescent" color="secondary" style="margin-top: 10px"></ion-spinner></div>

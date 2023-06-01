@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {SearchPostService} from "../services/searchPost.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SearchPostModel} from "../../../core/models/search-post.model";
 import {filter, map, Observable, of, tap} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
@@ -18,7 +18,8 @@ export class ViewSearchPostComponent {
   loading: boolean = true;
   constructor(private searchPostService:SearchPostService,
               private route:ActivatedRoute,
-              private userService:UserService) {
+              private userService:UserService,
+              private router:Router) {
 
   }
   ngOnInit() {
@@ -32,5 +33,9 @@ export class ViewSearchPostComponent {
       filter((value) => value !== null),
       tap(_ => this.loading = false),
       map(response => response.body),)
+  }
+
+  redirectToPaymentModule() {
+    this.router.navigateByUrl(`/payment`)
   }
 }
