@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProfilePage } from './profile.page';
 import {LikesComponent} from "./components/likes/likes.component";
+import {AuthGuard} from "../core/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -11,12 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'likes',
-    component: LikesComponent
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
-  },
+    component: LikesComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
