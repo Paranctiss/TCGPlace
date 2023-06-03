@@ -1,7 +1,28 @@
 <ion-content [fullscreen]="true" id="main-content">
   <ion-header>
-    <ion-toolbar>
+    <app-search-reference [DefaultResults]="false"></app-search-reference>
+    <div class="overlay" *ngIf="!hideOverlay" (click)="resetSearch()"></div>
+      <div class="search-results" [style.display]="hideOverlay ? 'none' : 'block'" *ngIf="(searchResults$ | async) as results">
+        <div *ngIf="loading" class="searchMessage">
+          <ion-spinner color="primary" class="searchMessageContent"></ion-spinner>
+        </div>
+        <div *ngIf="results.length === 0 && !hideOverlay && !loading" class="searchMessage">
+          <div class="searchMessageContent">
+            Aucun résultat trouvé.
+          </div>
+        </div>
 
+        <div *ngFor="let result of results" class="resultItem" (click)="chooseRef(result)">
+          <div class="itemInfos">
+            <b>{{result.name}}</b><br>
+            <b>{{result.libelleExtension}}</b>
+          </div>
+          <img width="70px" class="imgResult" src="{{result.image}}/low.webp">
+        </div>
+      </div>
+  </ion-header>
+  <ion-header class="segments">
+    <ion-toolbar>
       <ion-segment value="sale" mode="md" >
         <ion-segment-button (click)="saleSelected = true" value="sale">
           <ion-label>Vente</ion-label>
@@ -12,6 +33,7 @@
       </ion-segment>
     </ion-toolbar>
   </ion-header>
-   <app-sale *ngIf="saleSelected"></app-sale>
-    <app-search *ngIf="!saleSelected"></app-search>
+  <ion-chip *ngIf="selectedReference">{{selectedReference.name}} - {{selectedReference.idExtension}}<ion-icon name="close-circle" (click)="unSelectRef()"></ion-icon></ion-chip>
+   <app-sale *ngIf="saleSelected" [idReference]="selectedReference?.idCard" ></app-sale>
+    <app-search *ngIf="!saleSelected" [idReference]="selectedReference?.idCard"></app-search>
 </ion-content>

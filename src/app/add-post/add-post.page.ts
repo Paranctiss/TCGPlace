@@ -17,9 +17,11 @@ export class AddPostPage implements OnDestroy {
   @ViewChild(SearchReferenceComponent) searchComponent!: SearchReferenceComponent;
   private unsubscribe$ = new Subject<void>();
   public loading: boolean = true;
+  public searchResults$!: Observable<PokemonItemReferenceModel[]>
+
   constructor(private router:Router, private searchService:SearchService) {
   }
-public searchResults$!: Observable<PokemonItemReferenceModel[]>
+
   saleSelected = true;
   ngOnInit() {
   }

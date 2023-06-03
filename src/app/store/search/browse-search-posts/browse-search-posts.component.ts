@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {SearchPostModel} from "../../../core/models/search-post.model";
-import {filter, map, Observable, of, tap} from "rxjs";
+import {BehaviorSubject, filter, map, Observable, of, switchMap, tap} from "rxjs";
 import {SearchPostService} from "../services/searchPost.service";
 
 @Component({
@@ -9,20 +9,30 @@ import {SearchPostService} from "../services/searchPost.service";
   styleUrls: ['./browse-search-posts.component.scss'],
 })
 export class BrowseSearchPostsComponent implements OnInit {
+  @Input() idReference!:string | undefined
 
   loading:boolean = true;
   skeletons = [0,0,0,0]
   searchPosts$: Observable<SearchPostModel[] | null> = of([])
+  private idReferenceSubject = new BehaviorSubject<string | undefined>(undefined);
 
-  constructor(private searchPostService:SearchPostService) { }
+  constructor(private searchPostService:SearchPostService) {
+    this.searchPosts$ = this.idReferenceSubject.pipe(
+      switchMap(id => this.searchPostService.getPublicSearchPosts(this.idReference)), // Exécute une nouvelle requête à chaque changement
+      tap(_ => this.loading = false),
+      map(response => response.body)
+    );
+  }
 
   ngOnInit() {
-    this.searchPosts$ = this.searchPostService.getPublicSearchPosts().pipe(
-      filter((value) => value !== null),
-      tap(_ => this.loading = false),
-      map(response => response.body),
-    )
+    this.idReferenceSubject.next(this.idReference);
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['idReference'] && !changes['idReference'].isFirstChange()) {
+      this.loading = true;
+      this.idReferenceSubject.next(changes['idReference'].currentValue);
+    }
   }
 
 }

@@ -12,10 +12,10 @@ export class SalePostService {
   constructor(private http: HttpClient) {}
   private apiURL = POST_URL;
 
-  getPublicSalePosts(pageNumber : number = 1,pageSize : number = 10): Observable<HttpResponse<SalePostModel[]>>{
+  getPublicSalePosts(idReference:string | undefined = "null", pageNumber : number = 1,pageSize : number = 10): Observable<HttpResponse<SalePostModel[]>>{
     let params = new HttpParams();
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
-    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public`,{params : params, observe: 'response'})
+    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public?idReference=${idReference}`,{params : params, observe: 'response'})
   }
 }

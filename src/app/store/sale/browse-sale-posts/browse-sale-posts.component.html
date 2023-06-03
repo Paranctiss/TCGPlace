@@ -1,15 +1,27 @@
 <ion-grid [fixed]="true">
   <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let post of list; index as position">
-        <app-sale-post-card (click)="redirectToAddPost(post.id)" [salePost]="post"></app-sale-post-card>
-      </ion-col>
-    </ion-row>
+    <ng-container *ngIf="list && list.length; else noPosts">
+      <ion-row>
+        <ion-col size="6" *ngFor="let post of list; index as position">
+          <app-sale-post-card (click)="redirectToAddPost(post.id)" [salePost]="post"></app-sale-post-card>
+        </ion-col>
+      </ion-row>
+    </ng-container>
     <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content
-      loading-spinner="bubbles"
-      loading-text="Loading ..">
+        loading-spinner="bubbles"
+        loading-text="Loading ..">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-grid>
+
+  <ng-template #noPosts>
+    <div *ngIf="!isLoading">
+      Aucune annonce trouvée.
+    </div>
+  </ng-template>
 </ion-grid>
+
+<ng-template [ngIf]="isLoading">
+  <app-skeleton-grid></app-skeleton-grid>
+</ng-template>

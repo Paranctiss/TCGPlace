@@ -4,5 +4,6 @@ export class PokemonItemReferenceModel{
   name!: string;
   image!: string;
   idExtension!: string;
+  libelleExtension!: string;
   language!: string;
 }

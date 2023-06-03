@@ -6,8 +6,7 @@
   </ion-card-header>
   <ion-card-content>
     <div>
-      <p>{{salePost.remarks}}</p>
-      <p>{{salePost.remarks}}</p>
+      <p>{{ salePost.idExtension }} - {{salePost.libelleExtension}}</p>
     </div>
     <div>
       <ion-icon *ngIf="!this.salePost.liked" name="heart-outline" size="large" (click)="LikeSalePost(this.salePost.id, $event)"></ion-icon>

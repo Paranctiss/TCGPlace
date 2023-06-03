@@ -15,17 +15,19 @@ import {BrowseSearchPostsComponent} from "./search/browse-search-posts/browse-se
 import {CoreModule} from "../core/core.module";
 import {SearchPostCardComponent} from "../core/components/search-post-card/search-post-card.component";
 import {SalePostCardComponent} from "../core/components/sale-post-card/sale-post-card.component";
+import {AddPostPageModule} from "../add-post/add-post.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule,
-    StorePageRoutingModule,
-    ExploreContainerComponentModule,
-    CoreModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        IonicModule,
+        StorePageRoutingModule,
+        ExploreContainerComponentModule,
+        CoreModule,
+        AddPostPageModule
+    ],
     exports: [
         SalePostCardComponent,
         SearchPostCardComponent
