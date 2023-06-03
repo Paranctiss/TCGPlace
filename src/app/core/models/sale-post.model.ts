@@ -24,4 +24,6 @@ export class SalePostModel extends MerchPostModel{
   pictures!: PictureModel[];
   salePicturePosts! : string[];
   liked!: boolean;
+  libelleExtension!: string;
+  idExtension!: string;
 }
