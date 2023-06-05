@@ -57,6 +57,6 @@ export class AddPostPage implements OnDestroy {
   }
 
   changeResults($event: Observable<PokemonItemReferenceModel[]>) {
-      console.log($event)
+
   }
 }

@@ -24,7 +24,7 @@ export class LastestSalePostSliderComponent implements OnInit {
       map(response => response.body)
     )
     this.salePost.subscribe(data => {
-      console.log(data)
+      
     })
   }
 

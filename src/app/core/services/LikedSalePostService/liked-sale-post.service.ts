@@ -46,7 +46,7 @@ export class LikedSalePostService{
       userId: userId,
       salePostId: guidPostId
     }
-    console.log(likedPost)
+    
     return this.http.request<ArrayBuffer>('delete', `${this.apiURL}/LikedSalePost/delete`, {body: likedPost})
   }
 

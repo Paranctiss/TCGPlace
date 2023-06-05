@@ -16,7 +16,6 @@ export class ExtensionCardService {
   
   GetAllExtensions():Observable<ExtensionModel[]>{
     this.http.get<ExtensionModel[]>(`${this.apiURL}/Pokemon/GetAllPokemonsExtensions`).subscribe(s => {
-      console.log(s)
     })
     return this.http.get<ExtensionModel[]>(`${this.apiURL}/Pokemon/GetAllPokemonsExtensions`);
   }

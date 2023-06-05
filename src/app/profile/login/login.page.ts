@@ -37,7 +37,6 @@ export class LoginPage implements OnInit {
       (response) => {
         this.toastService.presentToastSuccess("Authentification réussie !", 2000)
         localStorage.setItem('access_token', response.accessToken);
-        console.log(response)
         const accessToken = localStorage.getItem('access_token')
         if(accessToken){
           this.userService.GetUserInfo(accessToken).subscribe(res => {

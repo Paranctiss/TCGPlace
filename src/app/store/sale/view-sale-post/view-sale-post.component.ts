@@ -68,10 +68,6 @@ export class ViewSalePostComponent {
     return await modal.present();
   }
 
-  test(sp: SalePostModel){
-    console.log(sp)
-  }
-
   redirectToPaymentModule() {
     this.router.navigateByUrl(`/payment`)
   }

@@ -53,7 +53,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 break;
               default:
                 this.toastService.presentToastError(this.ERROR_SERVER_UNREACHABLE);
-                console.log(err);
             }
           } catch (e) {
             this.toastService.presentToastError(this.ERROR_SERVER_UNREACHABLE);
