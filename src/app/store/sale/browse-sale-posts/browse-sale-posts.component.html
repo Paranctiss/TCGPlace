@@ -7,7 +7,7 @@
         </ion-col>
       </ion-row>
     </ng-container>
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll *ngIf="!isLoading" threshold="100px" (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content
         loading-spinner="bubbles"
         loading-text="Loading ..">

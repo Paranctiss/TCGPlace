@@ -4,6 +4,8 @@ import {POST_URL} from "../../../../../config";
 import {Observable} from "rxjs";
 import {SearchPostModel} from "../../../core/models/search-post.model";
 import {SalePostModel} from "../../../core/models/sale-post.model";
+import {ExtensionModel} from "../../../home/components/extension-card-slider/models/extension.model";
+import {GradingModel} from "../../../core/models/grading.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,23 @@ export class SalePostService {
   constructor(private http: HttpClient) {}
   private apiURL = POST_URL;
 
-  getPublicSalePosts(idReference:string | undefined = "null", pageNumber : number = 1,pageSize : number = 10): Observable<HttpResponse<SalePostModel[]>>{
+  getPublicSalePosts(idReference:string | undefined = "null",
+                     extensions:ExtensionModel[] | undefined = undefined,
+                     gradings:GradingModel[] | undefined = undefined,
+                     pageNumber : number = 1,
+                     pageSize : number = 10): Observable<HttpResponse<SalePostModel[]>>{
     let params = new HttpParams();
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
-    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public?idReference=${idReference}`,{params : params, observe: 'response'})
+    let idExtensions = extensions?.map(extension => extension.id)
+    let stringExtensions = idExtensions?.toString()
+    stringExtensions == '' ? stringExtensions = undefined : stringExtensions;
+
+    let idGradings = gradings?.map(grading => grading.id)
+    let stringGradings = idGradings?.toString()
+    stringGradings == '' ? stringGradings = undefined : stringGradings;
+
+    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public?idReference=${idReference}&idExtensions=${stringExtensions}&idGradings=${stringGradings}`,
+      {params : params, observe: 'response'})
   }
 }

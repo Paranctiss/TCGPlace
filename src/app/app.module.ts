@@ -13,13 +13,15 @@ import { LikesComponent } from './profile/components/likes/likes.component';
 import {StorePageModule} from "./store/store.module";
 import { ViewSearchPostComponent } from './store/search/view-search-post/view-search-post.component';
 import { ViewSalePostComponent } from './store/sale/view-sale-post/view-sale-post.component';
+import { SalePostFilterModalComponent } from './store/sale/sale-post-filter-modal/sale-post-filter-modal.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LikesComponent,
         ViewSearchPostComponent,
-        ViewSalePostComponent
+        ViewSalePostComponent,
+        SalePostFilterModalComponent
     ],
     imports: [
         BrowserModule,

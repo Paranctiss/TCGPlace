@@ -1,4 +1,9 @@
 <ion-content [fullscreen]="true" id="main-content">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="openModal()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-header>
     <app-search-reference [DefaultResults]="false"></app-search-reference>
     <div class="overlay" *ngIf="!hideOverlay" (click)="resetSearch()"></div>
@@ -34,6 +39,10 @@
     </ion-toolbar>
   </ion-header>
   <ion-chip *ngIf="selectedReference">{{selectedReference.name}} - {{selectedReference.idExtension}}<ion-icon name="close-circle" (click)="unSelectRef()"></ion-icon></ion-chip>
-   <app-sale *ngIf="saleSelected" [idReference]="selectedReference?.idCard" ></app-sale>
-    <app-search *ngIf="!saleSelected" [idReference]="selectedReference?.idCard"></app-search>
+  <ion-chip *ngFor="let grading of selectedGradings">{{grading.name}}<ion-icon name="close-circle" (click)="unSelectGrading(grading)"></ion-icon></ion-chip>
+  <ion-chip *ngFor="let extension of selectedExtensions">{{extension.id}}<ion-icon name="close-circle" (click)="unSelectExtension(extension)"></ion-icon></ion-chip>
+   <app-sale *ngIf="saleSelected" [idReference]="selectedReference?.idCard" [extensions]="selectedExtensions" [gradings]="selectedGradings"></app-sale>
+    <app-search *ngIf="!saleSelected" [idReference]="selectedReference?.idCard" [extensions]="selectedExtensions" [gradings]="selectedGradings"></app-search>
+
+
 </ion-content>

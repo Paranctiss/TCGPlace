@@ -9,6 +9,8 @@ import {SearchPostModel} from "../../../core/models/search-post.model";
 import {da, ta, th} from "date-fns/locale";
 import {InfiniteScrollCustomEvent} from "@ionic/angular";
 import {HttpResponse} from "@angular/common/http";
+import {ExtensionModel} from "../../../home/components/extension-card-slider/models/extension.model";
+import {GradingModel} from "../../../core/models/grading.model";
 
 @Component({
   selector: 'app-browse-sale-posts',
@@ -18,6 +20,8 @@ import {HttpResponse} from "@angular/common/http";
 export class BrowseSalePostsComponent implements OnInit, OnDestroy {
 
   @Input() idReference!:string | undefined
+  @Input() extensions!: ExtensionModel[] | undefined
+  @Input() gradings!: GradingModel[] | undefined
 
   pictures: PictureModel[] = []
   isLoading : boolean = true
@@ -47,6 +51,18 @@ export class BrowseSalePostsComponent implements OnInit, OnDestroy {
       this.list = [];
       this.idReferenceSubject.next(changes['idReference'].currentValue);
     }
+    if (changes['extensions'] && !changes['extensions'].isFirstChange()) {
+      this.isLoading = true;
+      this.currentPage = 1;
+      this.list = [];
+      this.idReferenceSubject.next(changes['extensions'].currentValue);
+    }
+    if (changes['gradings'] && !changes['gradings'].isFirstChange()) {
+      this.isLoading = true;
+      this.currentPage = 1;
+      this.list = [];
+      this.idReferenceSubject.next(changes['gradings'].currentValue);
+    }
   }
 
   onIonInfinite(ev : any) {
@@ -60,7 +76,7 @@ export class BrowseSalePostsComponent implements OnInit, OnDestroy {
   }
 
   getSales(): Observable<HttpResponse<SalePostModel[]>> {
-    return this.saleService.getPublicSalePosts(this.idReference, this.currentPage).pipe(
+    return this.saleService.getPublicSalePosts(this.idReference, this.extensions, this.gradings, this.currentPage).pipe(
       tap(val => {
         this.isLoading = false
         if(val.body !== null){

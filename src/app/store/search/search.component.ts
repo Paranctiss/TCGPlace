@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ExtensionModel} from "../../home/components/extension-card-slider/models/extension.model";
+import {GradingModel} from "../../core/models/grading.model";
 
 @Component({
   selector: 'app-search',
@@ -8,6 +10,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SearchComponent implements OnInit {
 
   @Input() idReference!:string | undefined
+  @Input() extensions!:ExtensionModel[] | undefined
+  @Input() gradings!:GradingModel[] | undefined
 
   constructor() { }
 

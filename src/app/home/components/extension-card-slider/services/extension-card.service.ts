@@ -13,7 +13,7 @@ export class ExtensionCardService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   private apiURL = CATALOG_URL;
-  
+
   GetAllExtensions():Observable<ExtensionModel[]>{
     this.http.get<ExtensionModel[]>(`${this.apiURL}/Pokemon/GetAllPokemonsExtensions`).subscribe(s => {
     })

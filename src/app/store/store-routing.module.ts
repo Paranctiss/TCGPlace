@@ -13,9 +13,13 @@ const routes: Routes = [
   {
     path: 'sale/:id',
     component: ViewSalePostComponent
-  },  
+  },
   {
     path: 'extension/:id',
+    component: StorePage
+  },
+  {
+    path: 'extension/',
     component: StorePage
   },
   {
