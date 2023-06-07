@@ -1,18 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CheckboxChangeEventDetail, CheckboxCustomEvent, ModalController} from "@ionic/angular";
 import {ExtensionCardService} from "../../../home/components/extension-card-slider/services/extension-card.service";
 import {Observable} from "rxjs";
 import {ExtensionModel} from "../../../home/components/extension-card-slider/models/extension.model";
-import {GradingModel} from "../../../core/models/grading.model";
-import {GradingService} from "../../../core/services/GradingService/grading.service";
+import {GradingModel} from "../../models/grading.model";
+import {GradingService} from "../../services/GradingService/grading.service";
 
 @Component({
-  selector: 'app-sale-post-filter-modal',
-  templateUrl: './sale-post-filter-modal.component.html',
-  styleUrls: ['./sale-post-filter-modal.component.scss']
+  selector: 'filter-modal',
+  templateUrl: './filter-modal.component.html',
+  styleUrls: ['./filter-modal.component.scss']
 })
-export class SalePostFilterModalComponent implements OnInit{
+export class FilterModalComponent implements OnInit{
 
+  @Input() isReference:boolean = false;
   extensions$!:Observable<ExtensionModel[]>
   gradings$!:Observable<GradingModel[]>
   checkedExtenions:ExtensionModel[] = []

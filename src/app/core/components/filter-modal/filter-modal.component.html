@@ -22,7 +22,7 @@
           {{extension.libelle}}</ion-label>
       </ion-item>
     </ion-accordion>
-    <ion-accordion value="gradings">
+    <ion-accordion value="gradings" *ngIf="!isReference">
       <ion-item slot="header">
         <ion-label>Etats</ion-label>
       </ion-item>

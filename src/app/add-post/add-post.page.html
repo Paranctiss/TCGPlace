@@ -1,6 +1,11 @@
 <ion-content [fullscreen]="true" id="main-content">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="openModal()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-header>
-    <app-search-reference [DefaultResults]="true" ></app-search-reference>
+    <app-search-reference [DefaultResults]="true" [Extensions]="selectedExtensions" ></app-search-reference>
   </ion-header>
   <ion-header>
     <ion-toolbar>
@@ -14,7 +19,7 @@
       </ion-segment>
     </ion-toolbar>
   </ion-header>
-
+  <ion-chip *ngFor="let extension of selectedExtensions">{{extension.id}}<ion-icon name="close-circle" (click)="unSelectExtension(extension)"></ion-icon></ion-chip>
   <app-add-reference-post (selectRef)="redirectToAddPost($event)" [ReferencesResults$]="this.searchResults$" [loading]="this.loading"></app-add-reference-post>
 
 </ion-content>

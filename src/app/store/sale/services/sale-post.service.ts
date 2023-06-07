@@ -19,9 +19,11 @@ export class SalePostService {
                      gradings:GradingModel[] | undefined = undefined,
                      pageNumber : number = 1,
                      pageSize : number = 10): Observable<HttpResponse<SalePostModel[]>>{
+
     let params = new HttpParams();
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
+
     let idExtensions = extensions?.map(extension => extension.id)
     let stringExtensions = idExtensions?.toString()
     stringExtensions == '' ? stringExtensions = undefined : stringExtensions;

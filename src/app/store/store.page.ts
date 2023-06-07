@@ -15,8 +15,7 @@ import {SearchReferenceComponent} from "../add-post/add-reference-post/search-re
 import {PokemonItemReferenceModel} from "../core/models/pokemon-item-reference.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SearchService} from "../core/services/SearchService/search.service";
-import {flag} from "ionicons/icons";
-import {SalePostFilterModalComponent} from "./sale/sale-post-filter-modal/sale-post-filter-modal.component";
+import {FilterModalComponent} from "../core/components/filter-modal/filter-modal.component";
 import {ExtensionModel} from "../home/components/extension-card-slider/models/extension.model";
 import {GradingModel} from "../core/models/grading.model";
 
@@ -104,7 +103,7 @@ export class StorePage implements OnInit {
 
   async openModal(){
     const modalSale = await this.modalCtrl.create({
-      component: SalePostFilterModalComponent
+      component: FilterModalComponent
     });
     await modalSale.present();
     const { data, role } = await modalSale.onDidDismiss();
