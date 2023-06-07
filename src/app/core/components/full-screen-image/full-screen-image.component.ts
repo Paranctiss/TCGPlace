@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-full-screen-image',
   templateUrl: './full-screen-image.component.html',
-  styleUrls: ['./full-screen-image.component.css']
+  styleUrls: ['./full-screen-image.component.scss']
 })
 export class FullScreenImageComponent {
   imageUrl!: string;

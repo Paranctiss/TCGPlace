@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-full-screen-image-slider',
   templateUrl: './full-screen-image-slider.component.html',
-  styleUrls: ['./full-screen-image-slider.component.css']
+  styleUrls: ['./full-screen-image-slider.component.scss']
 })
 export class FullScreenImageSliderComponent {
 
@@ -13,7 +13,7 @@ export class FullScreenImageSliderComponent {
 
   constructor(private modalCtrl: ModalController) {
   }
-  
+
   async dismiss() {
     await this.modalCtrl.dismiss();
   }
