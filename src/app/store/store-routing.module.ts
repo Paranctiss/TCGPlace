@@ -12,7 +12,11 @@ const routes: Routes = [
     component: StorePage
   },
   {
-    path: 'sale/:id',
+    path: 'sale/offer/:id',
+    component: OfferComponent
+  },
+  {
+    path: 'sale/view/:id',
     component: ViewSalePostComponent
   },
   {
@@ -22,10 +26,6 @@ const routes: Routes = [
   {
     path: 'extension/',
     component: StorePage
-  },  
-  {
-    path: 'sale/offer/',
-    component: OfferComponent
   },
   {
     path: 'search/:id',

@@ -49,7 +49,7 @@ export class ViewSalePostComponent {
       componentProps: {
         imageUrl: imageUrl
       }
-      
+
     });
 
     return await modal.present();
@@ -62,7 +62,7 @@ export class ViewSalePostComponent {
         imageReference: salePostPictureReference,
         images: salePostPictures
       }
-      
+
     });
 
     return await modal.present();
@@ -74,7 +74,7 @@ export class ViewSalePostComponent {
 
   redirectToOfferPage(idSalePost: string){
     console.log(idSalePost)
-    this.router.navigate(['/tabs/store/sale/offer'], { queryParams: { idSalePost: idSalePost } });    
+    this.router.navigateByUrl(`/tabs/store/sale/offer/${idSalePost}` );
   }
 
 }
