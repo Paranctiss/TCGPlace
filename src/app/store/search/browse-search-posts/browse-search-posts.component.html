@@ -1,16 +1,22 @@
 <ion-grid [fixed]="true">
   <ion-grid>
-    <ng-container *ngIf="searchPosts$ | async as posts">
-      <ion-row *ngIf="posts.length; else noPosts">
-        <ion-col size="6" *ngFor="let post of posts; index as position">
+    <ng-container *ngIf="SearchPostlist && SearchPostlist.length; else noPosts">
+      <ion-row *ngIf="SearchPostlist.length; else noPosts">
+        <ion-col size="6" *ngFor="let post of SearchPostlist; index as position">
           <app-search-post-card [searchPost]="post"></app-search-post-card>
         </ion-col>
       </ion-row>
     </ng-container>
+    <ion-infinite-scroll *ngIf="!loading" threshold="100px" (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content
+        loading-spinner="bubbles"
+        loading-text="Loading ..">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-grid>
 
   <ng-template #noPosts>
-    <div>
+    <div *ngIf="!loading">
       Aucune annonce trouvée.
     </div>
   </ng-template>

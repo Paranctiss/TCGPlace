@@ -18,7 +18,6 @@ import {GradingModel} from "../../../core/models/grading.model";
   styleUrls: ['./browse-sale-posts.component.scss'],
 })
 export class BrowseSalePostsComponent implements OnInit, OnDestroy {
-
   @Input() idReference!:string | undefined
   @Input() extensions!: ExtensionModel[] | undefined
   @Input() gradings!: GradingModel[] | undefined

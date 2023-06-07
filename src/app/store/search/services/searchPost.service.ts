@@ -14,7 +14,13 @@ export class SearchPostService{
 
   getPublicSearchPosts(idReference:string | undefined,
                        extensions:ExtensionModel[] | undefined,
-                       gradings:GradingModel[] | undefined): Observable<HttpResponse<SearchPostModel[]>>{
+                       gradings:GradingModel[] | undefined,
+                       pageNumber: number = 1,
+                       pageSize: number = 10): Observable<HttpResponse<SearchPostModel[]>>{
+
+    let params = new HttpParams();
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
 
     let idExtensions = extensions?.map(extension => extension.id)
     let stringExtensions = idExtensions?.toString()
@@ -24,7 +30,8 @@ export class SearchPostService{
     let stringGradings = idGradings?.toString()
     stringGradings == '' ? stringGradings = undefined : stringGradings;
 
-    return this.http.get<SearchPostModel[]>(`${this.apiURL}/SearchPost/public?idReference=${idReference}&idExtensions=${stringExtensions}&idGradings=${stringGradings}`,{observe: 'response'})
+    return this.http.get<SearchPostModel[]>(`${this.apiURL}/SearchPost/public?idReference=${idReference}&idExtensions=${stringExtensions}&idGradings=${stringGradings}`,
+      {params : params, observe: 'response'})
   }
 
   getSingleSearchPost(id:any): Observable<HttpResponse<SearchPostModel>>{

@@ -1,9 +1,12 @@
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {SearchPostModel} from "../../../core/models/search-post.model";
-import {BehaviorSubject, filter, map, Observable, of, switchMap, tap} from "rxjs";
+import {BehaviorSubject, filter, map, Observable, of, Subscription, switchMap, tap} from "rxjs";
 import {SearchPostService} from "../services/searchPost.service";
 import {ExtensionModel} from "../../../home/components/extension-card-slider/models/extension.model";
 import {GradingModel} from "../../../core/models/grading.model";
+import {InfiniteScrollCustomEvent} from "@ionic/angular";
+import {HttpResponse} from "@angular/common/http";
+import {SalePostModel} from "../../../core/models/sale-post.model";
 
 @Component({
   selector: 'app-browse-search-posts',
@@ -16,20 +19,56 @@ export class BrowseSearchPostsComponent implements OnInit {
   @Input() gradings!:GradingModel[] | undefined
 
   loading:boolean = true;
+  currentPage : number = 1
+  SearchPostlist : SearchPostModel[] = []
   skeletons = [0,0,0,0]
-  searchPosts$: Observable<SearchPostModel[] | null> = of([])
+
+  private subscription: Subscription = new Subscription();
   private idReferenceSubject = new BehaviorSubject<string | undefined>(undefined);
 
+  searchPosts$: Observable<SearchPostModel[] | null> = of([])
+
+
   constructor(private searchPostService:SearchPostService) {
-    this.searchPosts$ = this.idReferenceSubject.pipe(
+    /*this.searchPosts$ = this.idReferenceSubject.pipe(
       switchMap(id => this.searchPostService.getPublicSearchPosts(this.idReference, this.extensions, this.gradings)), // Exécute une nouvelle requête à chaque changement
       tap(_ => this.loading = false),
       map(response => response.body)
-    );
+    ); */
   }
 
   ngOnInit() {
+    this.subscription.add(
+      this.idReferenceSubject.pipe(
+        switchMap(() => this.getSearch())
+      ).subscribe()
+    );
     this.idReferenceSubject.next(this.idReference);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  onIonInfinite(ev : any) {
+    this.currentPage++;
+    setTimeout(() => {
+      if(ev !== null) {
+        (ev as InfiniteScrollCustomEvent).target.complete();
+      }
+      this.idReferenceSubject.next(this.idReference);
+    }, 1000);
+  }
+
+  getSearch(): Observable<HttpResponse<SearchPostModel[]>> {
+    return this.searchPostService.getPublicSearchPosts(this.idReference, this.extensions, this.gradings, this.currentPage).pipe(
+      tap(val => {
+        this.loading = false
+        if(val.body !== null){
+          this.SearchPostlist = this.SearchPostlist.concat(val.body);
+        }
+      }),
+    )
   }
 
   ngOnChanges(changes: SimpleChanges) {
