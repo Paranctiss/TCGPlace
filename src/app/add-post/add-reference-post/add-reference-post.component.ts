@@ -8,21 +8,14 @@ import {Observable} from "rxjs";
   templateUrl: './add-reference-post.component.html',
   styleUrls: ['./add-reference-post.component.scss'],
 })
-export class AddReferencePostComponent implements OnInit {
+export class AddReferencePostComponent {
 
-  @Input() ReferencesResults$!: Observable<PokemonItemReferenceModel[]>
+  @Input() SearchedReferences!: PokemonItemReferenceModel[]
   @Input() loading!: boolean
   @Output() selectRef: EventEmitter<string> = new EventEmitter();
 
-  //loading:boolean = true;
 
-  ReferencesList$!: Observable<PokemonItemReferenceModel[]>;
-
-  constructor(private pokemonService:PokemonService) {
-    //this.ReferencesList$ = this.pokemonService.GetAllReference()
-  }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
 

@@ -49,7 +49,7 @@ export class StorePage implements OnInit {
       tap(value => value === "" ? this.hideOverlay = true : this.hideOverlay = false), //cache l'overlay si vide
       debounceTime(500),//S'execute après 500ms de non changement
       distinctUntilChanged(), //Ignorer si identique à la valeur précédente
-      switchMap(value => value !== "" ? this.searchService.SearchReference(value) : of([])), //Si value == "" on renvoie un tableau vide
+      switchMap(value => value !== "" ? this.searchService.SearchReferenceObs(value) : of([])), //Si value == "" on renvoie un tableau vide
       tap(() => this.loading = false),
     )
   }

@@ -9,7 +9,7 @@
   </ion-header>
   <ion-header>
     <ion-toolbar>
-      <ion-segment value="sale" mode="md" >
+      <ion-segment value="sale" mode="md">
         <ion-segment-button (click)="saleSelected = true" value="sale">
           <ion-label>Vente</ion-label>
         </ion-segment-button>
@@ -20,6 +20,11 @@
     </ion-toolbar>
   </ion-header>
   <ion-chip *ngFor="let extension of selectedExtensions">{{extension.id}}<ion-icon name="close-circle" (click)="unSelectExtension(extension)"></ion-icon></ion-chip>
-  <app-add-reference-post (selectRef)="redirectToAddPost($event)" [ReferencesResults$]="this.searchResults$" [loading]="this.loading"></app-add-reference-post>
-
+  <app-add-reference-post (selectRef)="redirectToAddPost($event)" [SearchedReferences]="searchedReferencesList"  [loading]="this.loading"></app-add-reference-post>
+  <ion-infinite-scroll *ngIf="!loading" threshold="100px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loading-spinner="bubbles"
+      loading-text="Loading ..">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

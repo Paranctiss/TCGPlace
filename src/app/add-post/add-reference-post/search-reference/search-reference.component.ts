@@ -38,10 +38,6 @@ export class SearchReferenceComponent {
   }
 
   onValueChanged(value:any) {
-    //Si pas de resultat par defaut et que rien n'est recherché on fait rien =>
-    //Si on demande des résultat par défaut = on rentre tout le temps
-    //Dans le cas contraire, on vérifie si la valeur est bien non vide
-
     if(this.DefaultResults || value != ""){
       this.valueSubject.next(value.detail.value);
     }
