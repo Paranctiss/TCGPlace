@@ -73,14 +73,20 @@ export class BrowseSearchPostsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['idReference'] && !changes['idReference'].isFirstChange()) {
+      this.currentPage = 1;
+      this.SearchPostlist = [];
       this.loading = true;
       this.idReferenceSubject.next(changes['idReference'].currentValue);
     }
     if (changes['extensions'] && !changes['extensions'].isFirstChange()) {
+      this.currentPage = 1;
+      this.SearchPostlist = [];
       this.loading = true;
       this.idReferenceSubject.next(changes['extensions'].currentValue);
     }
     if (changes['gradings'] && !changes['gradings'].isFirstChange()) {
+      this.currentPage = 1;
+      this.SearchPostlist = [];
       this.loading = true;
       this.idReferenceSubject.next(changes['gradings'].currentValue);
     }
