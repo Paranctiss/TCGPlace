@@ -4,6 +4,7 @@ import { ViewSalePostComponent } from './sale/view-sale-post/view-sale-post.comp
 
 import { StorePage } from './store.page';
 import {ViewSearchPostComponent} from "./search/view-search-post/view-search-post.component";
+import { OfferComponent } from './sale/offer/offer.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'extension/',
     component: StorePage
+  },  
+  {
+    path: 'sale/offer/',
+    component: OfferComponent
   },
   {
     path: 'search/:id',

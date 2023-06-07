@@ -71,4 +71,10 @@ export class ViewSalePostComponent {
   redirectToPaymentModule() {
     this.router.navigateByUrl(`/payment`)
   }
+
+  redirectToOfferPage(idSalePost: string){
+    console.log(idSalePost)
+    this.router.navigate(['/tabs/store/sale/offer'], { queryParams: { idSalePost: idSalePost } });    
+  }
+
 }
