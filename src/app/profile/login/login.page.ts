@@ -41,6 +41,7 @@ export class LoginPage implements OnInit {
         if(accessToken){
           this.userService.GetUserInfo(accessToken).subscribe(res => {
             const user = new UserModel();
+            console.log(res.user)
             user.email = res.user.email
             user.username = res.user.username
             this.userService.setCurrentUser(user)

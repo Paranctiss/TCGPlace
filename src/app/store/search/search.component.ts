@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
   @Input() idReference!:string | undefined
   @Input() extensions!:ExtensionModel[] | undefined
   @Input() gradings!:GradingModel[] | undefined
+  @Input() idUser!: string | undefined
 
   constructor() { }
 

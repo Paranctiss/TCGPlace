@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -8,5 +10,7 @@ register();
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    registerLocaleData(localeFr);
+  }
 }

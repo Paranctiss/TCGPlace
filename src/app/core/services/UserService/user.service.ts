@@ -13,39 +13,39 @@ export class UserService{
   private apiURL = AUTH_URL;
   private currentUserSubject = new BehaviorSubject<UserModel | null>(null)
   private isLoggedIn = new BehaviorSubject<boolean>(false)
+
   constructor(private httpClient : HttpClient) {
-    const userJson = localStorage.getItem('current_user')
+    const userJson = localStorage.getItem('current_user');
+    console.log(localStorage)
     if (userJson) {
+      console.log(userJson)
       const user = JSON.parse(userJson) as UserModel;
-      this.currentUserSubject = new BehaviorSubject<UserModel | null>(user);
-    } else {
-      this.currentUserSubject = new BehaviorSubject<UserModel | null>(null);
+      this.currentUserSubject.next(user);
+      this.isLoggedIn.next(true);  // Ajoutez cette ligne
     }
   }
 
   setCurrentUser(user : UserModel | null){
-    this.currentUserSubject.next(user)
     localStorage.setItem('current_user', JSON.stringify(user));
+    this.currentUserSubject.next(user)
+    this.isLoggedIn.next(user !== null)
+  }
+
+  setCurrentUserId(id: string | undefined): void {
+    if (id) {
+      localStorage.setItem('current_user_id', JSON.stringify(id));
+    } else {
+      localStorage.removeItem('current_user_id');
+    }
   }
 
   getCurrentUser(): Observable<UserModel | null>{
     return this.currentUserSubject.asObservable()
   }
   isLogged() : Observable<boolean>{
-    if(this.currentUserSubject.value != null){
-      this.isLoggedIn.next(true)
-    }else{
-      this.isLoggedIn.next(false)
-    }
-    return this.isLoggedIn
+    return this.isLoggedIn.asObservable()
   }
 
-  Logout():void{
-    this.currentUserSubject.next(null)
-    this.isLoggedIn.next(false)
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('current_user');
-  }
 
   GetCurrentUserID(): number{
     return 1;
@@ -53,6 +53,10 @@ export class UserService{
   GetUserInfo(token: string): Observable<any> {
     const data = { token: token };
     return this.httpClient.post(`${this.apiURL}/Registration/user-info`, data);
+  }
+
+  GetProfileInfos(idUser:string): Observable<UserModel>{
+    return this.httpClient.get<UserModel>(`${this.apiURL}/Registration/profile/${idUser}`)
   }
 
   RegisterUser(user : any) : Observable<any>{
@@ -67,9 +71,19 @@ export class UserService{
     return this.httpClient.post(`${this.apiURL}/Registration/authenticate`, body).pipe(
       tap((response) => {
         if(response){
-          this.isLoggedIn.next(true)
+          this.isLoggedIn.next(true);  // Stocker l'utilisateur dans le localStorage
         }
       })
-    )
+    );
   }
+
+  Logout():void{
+    this.currentUserSubject.next(null);
+    this.isLoggedIn.next(false);
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('current_user');
+    localStorage.removeItem('current_user_id');
+  }
+
+
 }

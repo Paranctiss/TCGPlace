@@ -8,12 +8,14 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import {LoginPageModule} from "./login/login.module";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    RouterModule,
     ProfilePageRoutingModule,
     LoginPageModule
   ],
