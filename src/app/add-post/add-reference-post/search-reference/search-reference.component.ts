@@ -30,9 +30,7 @@ export class SearchReferenceComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
     if (changes['Extensions'] && !changes['Extensions'].isFirstChange()) {
-      console.log("changes")
       this.valueSubject.next(this.searchValue);
     }
   }

@@ -10,7 +10,7 @@ describe('UserService', () => {
   });
 
   afterEach(() => {
-    service = new UserService()
+   // service = new UserService()
     localStorage.removeItem('todos');
   });
 

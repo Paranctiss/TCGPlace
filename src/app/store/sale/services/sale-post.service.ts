@@ -17,6 +17,7 @@ export class SalePostService {
   getPublicSalePosts(idReference:string | undefined = "null",
                      extensions:ExtensionModel[] | undefined = undefined,
                      gradings:GradingModel[] | undefined = undefined,
+                     idUser:string | undefined = undefined,
                      pageNumber : number = 1,
                      pageSize : number = 10): Observable<HttpResponse<SalePostModel[]>>{
 
@@ -32,7 +33,7 @@ export class SalePostService {
     let stringGradings = idGradings?.toString()
     stringGradings == '' ? stringGradings = undefined : stringGradings;
 
-    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public?idReference=${idReference}&idExtensions=${stringExtensions}&idGradings=${stringGradings}`,
+    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public?idReference=${idReference}&idExtensions=${stringExtensions}&idGradings=${stringGradings}&idUser=${idUser}`,
       {params : params, observe: 'response'})
   }
 }

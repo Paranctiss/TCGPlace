@@ -29,11 +29,13 @@ import {SearchPostService} from "./search/services/searchPost.service";
         CoreModule,
         AddPostPageModule
     ],
-    exports: [
-        SalePostCardComponent,
-        SearchPostCardComponent
+  exports: [
+    SalePostCardComponent,
+    SearchPostCardComponent,
+    SaleComponent,
+    SearchComponent
 
-    ],
+  ],
   declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent, SearchPostCardComponent, SalePostCardComponent],
   providers: [SearchPostService]
 })

@@ -17,6 +17,7 @@ export class BrowseSearchPostsComponent implements OnInit {
   @Input() idReference!:string | undefined
   @Input() extensions!:ExtensionModel[] | undefined
   @Input() gradings!:GradingModel[] | undefined
+  @Input() idUser!: string | undefined
 
   loading:boolean = true;
   currentPage : number = 1
@@ -61,7 +62,7 @@ export class BrowseSearchPostsComponent implements OnInit {
   }
 
   getSearch(): Observable<HttpResponse<SearchPostModel[]>> {
-    return this.searchPostService.getPublicSearchPosts(this.idReference, this.extensions, this.gradings, this.currentPage).pipe(
+    return this.searchPostService.getPublicSearchPosts(this.idReference, this.extensions, this.gradings, this.idUser, this.currentPage).pipe(
       tap(val => {
         this.loading = false
         if(val.body !== null){

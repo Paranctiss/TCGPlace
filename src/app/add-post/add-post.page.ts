@@ -86,7 +86,6 @@ export class AddPostPage implements OnDestroy {
               this.searchedReferencesList = val.body;
             }else{
               this.keepList = false;
-              console.log("concat")
               this.searchedReferencesList = this.searchedReferencesList.concat(val.body);
             }
           }

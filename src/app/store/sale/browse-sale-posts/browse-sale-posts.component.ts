@@ -21,6 +21,7 @@ export class BrowseSalePostsComponent implements OnInit, OnDestroy {
   @Input() idReference!:string | undefined
   @Input() extensions!: ExtensionModel[] | undefined
   @Input() gradings!: GradingModel[] | undefined
+  @Input() idUser!: string | undefined
 
   pictures: PictureModel[] = []
   isLoading : boolean = true
@@ -75,7 +76,7 @@ export class BrowseSalePostsComponent implements OnInit, OnDestroy {
   }
 
   getSales(): Observable<HttpResponse<SalePostModel[]>> {
-    return this.saleService.getPublicSalePosts(this.idReference, this.extensions, this.gradings, this.currentPage).pipe(
+    return this.saleService.getPublicSalePosts(this.idReference, this.extensions, this.gradings,this.idUser,  this.currentPage, ).pipe(
       tap(val => {
         this.isLoading = false
         if(val.body !== null){

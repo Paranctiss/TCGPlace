@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -14,6 +14,7 @@ import {StorePageModule} from "./store/store.module";
 import { ViewSearchPostComponent } from './store/search/view-search-post/view-search-post.component';
 import { ViewSalePostComponent } from './store/sale/view-sale-post/view-sale-post.component';
 import { FilterModalComponent } from './core/components/filter-modal/filter-modal.component';
+import {ViewProfileComponent} from "./profile/components/view-profile/view-profile.component";
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { FilterModalComponent } from './core/components/filter-modal/filter-moda
         LikesComponent,
         ViewSearchPostComponent,
         ViewSalePostComponent,
-        FilterModalComponent
+        FilterModalComponent,
+        ViewProfileComponent
     ],
     imports: [
         BrowserModule,
@@ -33,7 +35,8 @@ import { FilterModalComponent } from './core/components/filter-modal/filter-moda
     ],
     providers: [
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}],
+        {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
+        {provide: LOCALE_ID, useValue: 'fr'}],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

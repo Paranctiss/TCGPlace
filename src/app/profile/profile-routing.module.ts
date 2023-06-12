@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfilePage } from './profile.page';
 import {LikesComponent} from "./components/likes/likes.component";
 import {AuthGuard} from "../core/guards/auth.guard";
+import {ViewProfileComponent} from "./components/view-profile/view-profile.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
     path: 'likes',
     component: LikesComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: ':id',
+    component: ViewProfileComponent
   }
 ];
 
