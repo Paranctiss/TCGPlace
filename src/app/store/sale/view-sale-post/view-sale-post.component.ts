@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {filter, map, Observable, of, tap} from "rxjs";
+import {concat, filter, map, Observable, of, Subject, switchMap, take, tap} from "rxjs";
 import {PokemonItemReferenceModel} from "../../../core/models/pokemon-item-reference.model";
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {UserService} from "../../../core/services/UserService/user.service";
@@ -28,19 +28,29 @@ export class ViewSalePostComponent {
   reference$!: Observable<PokemonItemReferenceModel>
   isDisabled:boolean = true;
   salePost!: SalePostModel | null;
+  userId!: number
+
+  private userId$ = new Subject<number>();
 
   ngOnInit() {
+    this.UserSalePost$ = this.userId$.pipe(
+      switchMap(userId => this.salePostService.getSomeSalePostForUser(userId, 5)),
+      filter((value) => value !== null),
+      tap(_ => this.loading = false),
+      map(response => response.body),
+    );
+
     this.SalePost$ = this.salePostService.getSingleSalePost(this.route.snapshot.params['id']).pipe(
       filter((value) => value !== null),
       tap(_ => this.loading = false),
       map(response => response.body),
-    )
+      tap(resp => this.userId$.next(resp!.userId))
+    );
 
-    const userID = this.userService.GetCurrentUserID()
-    this.UserSalePost$ = this.salePostService.getSomeSalePostForUser(userID, 5).pipe(
-      filter((value) => value !== null),
-      tap(_ => this.loading = false),
-      map(response => response.body),)
+  }
+
+  ngOnDestroy() {
+    this.userId$.complete();
   }
 
   async openFullscreenImage(imageUrl: string) {
@@ -49,7 +59,7 @@ export class ViewSalePostComponent {
       componentProps: {
         imageUrl: imageUrl
       }
-      
+
     });
 
     return await modal.present();
@@ -62,7 +72,7 @@ export class ViewSalePostComponent {
         imageReference: salePostPictureReference,
         images: salePostPictures
       }
-      
+
     });
 
     return await modal.present();
@@ -70,5 +80,9 @@ export class ViewSalePostComponent {
 
   redirectToPaymentModule() {
     this.router.navigateByUrl(`/payment`)
+  }
+
+  redirectToProfile(userId: number) {
+    this.router.navigateByUrl(`/tabs/profil/${userId}`)
   }
 }

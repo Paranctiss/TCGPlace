@@ -26,4 +26,5 @@ export class SalePostModel extends MerchPostModel{
   liked!: boolean;
   libelleExtension!: string;
   idExtension!: string;
+  username!: string;
 }

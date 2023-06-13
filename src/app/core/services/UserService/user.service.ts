@@ -49,8 +49,7 @@ export class UserService{
     return 1;
   }
   GetUserInfo(token: string): Observable<any> {
-    const data = { token: token };
-    return this.httpClient.post(`${this.apiURL}/Registration/user-info`, data);
+    return this.httpClient.get(`${this.apiURL}/Registration/user-info`);
   }
 
   GetProfileInfos(idUser:string): Observable<UserModel>{

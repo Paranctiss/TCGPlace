@@ -1,4 +1,4 @@
-<ion-card class="card-container">
+<ion-card class="card-container" (click)="redirectToAddPost(salePost.id)">
   <img [src]=salePost.salePicturePosts />
   <ion-card-header>
     <ion-card-title class="card-name">{{salePost.name}}</ion-card-title>

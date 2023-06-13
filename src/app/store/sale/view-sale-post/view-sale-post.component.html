@@ -18,12 +18,12 @@
       </div>
 
       <div class="cardInformations">
-          <ion-item lines="full">
+          <ion-item lines="full" (click)="redirectToProfile(salePost.userId)">
               <ion-avatar slot="start">
               <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
               </ion-avatar>
               <ion-label>
-              SuperDresseur45
+                {{salePost.username}}
               </ion-label>
               <ion-icon name="mail-outline" slot="end"></ion-icon>
           </ion-item>
