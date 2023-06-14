@@ -6,7 +6,7 @@ import {UserService} from "../../../core/services/UserService/user.service";
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {SearchPostModel} from "../../../core/models/search-post.model";
 import {SalePostService} from "../../../store/sale/services/sale-post.service";
-import {SearchPostService} from "../../../store/search/services/searchPost.service";
+import {SearchPostService} from "../../../store/search/services/search-post.service";
 import {HttpResponse} from "@angular/common/http";
 import {PokemonItemReferenceModel} from "../../../core/models/pokemon-item-reference.model";
 import {GradingModel} from "../../../core/models/grading.model";

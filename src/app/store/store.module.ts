@@ -16,8 +16,8 @@ import {CoreModule} from "../core/core.module";
 import {SearchPostCardComponent} from "../core/components/search-post-card/search-post-card.component";
 import {SalePostCardComponent} from "../core/components/sale-post-card/sale-post-card.component";
 import {AddPostPageModule} from "../add-post/add-post.module";
-import {SearchPostService} from "./search/services/searchPost.service";
 import {PaymentComponent} from "./sale/payment/payment.component";
+import {SearchPostService} from "./search/services/search-post.service";
 
 @NgModule({
   imports: [
@@ -35,6 +35,7 @@ import {PaymentComponent} from "./sale/payment/payment.component";
     SearchPostCardComponent,
     SaleComponent,
     SearchComponent
+
   ],
   declarations: [StorePage, SaleComponent, PaymentComponent,BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent, SearchPostCardComponent, SalePostCardComponent],
   providers: [SearchPostService]

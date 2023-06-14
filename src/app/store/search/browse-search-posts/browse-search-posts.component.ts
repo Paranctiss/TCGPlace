@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {SearchPostModel} from "../../../core/models/search-post.model";
 import {BehaviorSubject, filter, map, Observable, of, Subscription, switchMap, tap} from "rxjs";
-import {SearchPostService} from "../services/searchPost.service";
+import {SearchPostService} from "../services/search-post.service";
 import {ExtensionModel} from "../../../home/components/extension-card-slider/models/extension.model";
 import {GradingModel} from "../../../core/models/grading.model";
 import {InfiniteScrollCustomEvent} from "@ionic/angular";

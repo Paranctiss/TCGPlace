@@ -37,11 +37,20 @@
           </div>
 
           <div class="btnActions">
-              <ion-button expand="block" (click)="openModulePayment(salePost)">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
-              <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
-              <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
-              <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
-              <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+              <div *ngIf="!isOwner">
+                <ion-button expand="block" (click)="openModulePayment(salePost)">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+                <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
+                <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
+                <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
+                <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+              </div>
+              <div *ngIf="isOwner">
+                <ion-button expand="block">Modifier<ion-icon slot="end" name="pencil-outline"></ion-icon></ion-button>
+                <ion-button *ngIf="salePost.isPublic" expand="block" fill="outline">Passer en privé<ion-icon slot="end" name="lock-closed-outline"></ion-icon></ion-button>
+                <ion-button *ngIf="!salePost.isPublic" expand="block" fill="outline">Passer en public<ion-icon slot="end" name="lock-open-outline"></ion-icon></ion-button>
+                <ion-button expand="block" fill="outline" color="medium">Partager<ion-icon slot="end" name="share-outline"></ion-icon></ion-button>
+                <ion-button expand="block" color="danger">Supprimer<ion-icon slot="end" name="trash-outline"></ion-icon></ion-button>
+              </div>
             </div>
             <ion-item-divider color="white"></ion-item-divider>
             <ion-item-divider></ion-item-divider>

@@ -42,7 +42,7 @@ export class StorePage implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.searchResults$ = this.searchComponent.valueSubject.asObservable().pipe(
+    this.searchResults$ = this.searchComponent.valueSubject.pipe(
       tap(() => this.loading = true),
       takeUntil(this.unsubscribe$), //Unsubscribe onDestroy
       map(value => value != "" ? value : ""), //Ne s'execute pas par défaut

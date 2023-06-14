@@ -4,9 +4,8 @@
       <ion-title align="center">Annonce de recherche</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <div *ngIf="this.SearchPost$ | async as searchPost">
 
+  <div *ngIf="this.SearchPost$ | async as searchPost">
     <div class="card" align="center" style="margin-top: 10px">
       <ion-img src="{{searchPost.image}}" style="width: 150px; margin: auto"></ion-img>
     </div>
@@ -17,7 +16,7 @@
         <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
         <ion-label>
-        SuperDresseur45
+        {{searchPost.username}}
         </ion-label>
         <ion-icon name="mail-outline" slot="end"></ion-icon>
       </ion-item>
@@ -30,11 +29,20 @@
       </div>
 
       <div class="btnActions">
-        <ion-button expand="block" (click)="redirectToPaymentModule()">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
-        <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
-        <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
-        <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
-        <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+        <div *ngIf="!isOwner">
+          <ion-button expand="block" (click)="redirectToPaymentModule()">Acheter <ion-icon slot="end" name="cart-outline"></ion-icon></ion-button>
+          <ion-button expand="block" fill="outline">Faire une offre<ion-icon slot="end" name="pricetag-outline"></ion-icon></ion-button>
+          <ion-button expand="block" fill="outline">Proposer un échange<ion-icon slot="end" name="swap-horizontal"></ion-icon></ion-button>
+          <ion-button expand="block" fill="outline" color="medium">Favoris  <ion-icon slot="end" name="heart-outline"></ion-icon></ion-button>
+          <ion-button expand="block" color="danger">Signaler<ion-icon slot="end" name="warning"></ion-icon></ion-button>
+        </div>
+        <div *ngIf="isOwner">
+          <ion-button expand="block">Modifier<ion-icon slot="end" name="pencil-outline"></ion-icon></ion-button>
+          <ion-button *ngIf="searchPost.isPublic" expand="block" fill="outline">Passer en privé<ion-icon slot="end" name="lock-closed-outline"></ion-icon></ion-button>
+          <ion-button *ngIf="!searchPost.isPublic" expand="block" fill="outline">Passer en public<ion-icon slot="end" name="lock-open-outline"></ion-icon></ion-button>
+          <ion-button expand="block" fill="outline" color="medium">Partager<ion-icon slot="end" name="share-outline"></ion-icon></ion-button>
+          <ion-button expand="block" color="danger">Supprimer<ion-icon slot="end" name="trash-outline"></ion-icon></ion-button>
+        </div>
       </div>
       <ion-item-divider color="white"></ion-item-divider>
       <ion-item-divider></ion-item-divider>

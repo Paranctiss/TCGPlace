@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {concat, filter, map, Observable, of, Subject, switchMap, take, tap} from "rxjs";
+import {combineLatest, concat, filter, map, Observable, of, ReplaySubject, Subject, switchMap, take, tap} from "rxjs";
 import {PokemonItemReferenceModel} from "../../../core/models/pokemon-item-reference.model";
 import {SalePostModel} from "../../../core/models/sale-post.model";
 import {UserService} from "../../../core/services/UserService/user.service";
-import { SalePostService } from '../services/salePost.service';
 import { ModalController } from '@ionic/angular';
 import { FullScreenImageComponent } from 'src/app/core/components/full-screen-image/full-screen-image.component';
 import { FullScreenImageSliderComponent } from 'src/app/core/components/full-screen-image-slider/full-screen-image-slider.component';
 import {PaymentComponent} from "../payment/payment.component";
+import {SalePostService} from "../services/sale-post.service";
 
 @Component({
   selector: 'app-view-sale-post',
@@ -26,20 +26,16 @@ export class ViewSalePostComponent {
               private router:Router) {
   }
 
-  reference$!: Observable<PokemonItemReferenceModel>
   isDisabled:boolean = true;
-  salePost!: SalePostModel | null;
-  userId!: number
+  isOwner: boolean = false;
 
-  private userId$ = new Subject<number>();
+  private userId$ = new ReplaySubject<number>();
 
   ngOnInit() {
-    this.UserSalePost$ = this.userId$.pipe(
-      switchMap(userId => this.salePostService.getSomeSalePostForUser(userId, 5)),
-      filter((value) => value !== null),
-      tap(_ => this.loading = false),
-      map(response => response.body),
-    );
+   this.userId$.pipe(take(1)).subscribe(userId => {
+      this.DefineOwner(userId);
+      this.initUserSalePost$();
+    });
 
     this.SalePost$ = this.salePostService.getSingleSalePost(this.route.snapshot.params['id']).pipe(
       filter((value) => value !== null),
@@ -47,7 +43,23 @@ export class ViewSalePostComponent {
       map(response => response.body),
       tap(resp => this.userId$.next(resp!.userId))
     );
+  }
 
+  initUserSalePost$() {
+    this.UserSalePost$ = this.userId$.pipe(
+      switchMap(userId => this.salePostService.getSomeSalePostForUser(userId, 5)),
+      filter((value) => value !== null),
+      tap(_ => this.loading = false),
+      map(response => response.body),
+    );
+  }
+  DefineOwner(userId:number){
+    let currentUserId = this.userService.GetCurrentUserID()
+    if(currentUserId == userId){
+      this.isOwner = true;
+    }else{
+      this.isOwner = false;
+    }
   }
 
   ngOnDestroy() {

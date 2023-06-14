@@ -36,4 +36,12 @@ export class SalePostService {
     return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/public?idReference=${idReference}&idExtensions=${stringExtensions}&idGradings=${stringGradings}&idUser=${idUser}`,
       {params : params, observe: 'response'})
   }
+
+  getSingleSalePost(id:any): Observable<HttpResponse<SalePostModel>>{
+    return this.http.get<SalePostModel>(`${this.apiURL}/SalePost/${id}`,{observe: 'response'})
+  }
+
+  getSomeSalePostForUser(userId:number, pageSize:number): Observable<HttpResponse<SalePostModel[]>>{
+    return this.http.get<SalePostModel[]>(`${this.apiURL}/SalePost/user/${userId}/${pageSize}`,{observe: 'response'})
+  }
 }

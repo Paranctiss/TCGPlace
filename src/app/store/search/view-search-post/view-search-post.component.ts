@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {SearchPostService} from "../services/searchPost.service";
+import {SearchPostService} from "../services/search-post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SearchPostModel} from "../../../core/models/search-post.model";
-import {filter, map, Observable, of, tap} from "rxjs";
+import {filter, map, Observable, of, ReplaySubject, switchMap, take, tap} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {UserService} from "../../../core/services/UserService/user.service";
 
@@ -22,8 +22,15 @@ export class ViewSearchPostComponent {
               private router:Router) {
 
   }
+
+  isDisabled:boolean = true;
+  isOwner: boolean = false;
+
+  private userId$ = new ReplaySubject<number>();
+
+
   ngOnInit() {
-    this.SearchPost$ = this.searchPostService.getSingleSearchPost(this.route.snapshot.params['id']).pipe(
+   /* this.SearchPost$ = this.searchPostService.getSingleSearchPost(this.route.snapshot.params['id']).pipe(
       filter((value) => value !== null),
       tap(_ => this.loading = false),
       map(response => response.body),
@@ -32,8 +39,42 @@ export class ViewSearchPostComponent {
     this.UserSearchPost$ = this.searchPostService.getSomeSearchPostForUser(userID, 5).pipe(
       filter((value) => value !== null),
       tap(_ => this.loading = false),
-      map(response => response.body),)
+      map(response => response.body),) */
+
+    this.userId$.pipe(take(1)).subscribe(userId => {
+      this.DefineOwner(userId);
+      this.initUserSalePost$();
+    });
+
+    this.SearchPost$ = this.searchPostService.getSingleSearchPost(this.route.snapshot.params['id']).pipe(
+      filter((value) => value !== null),
+      tap(_ => this.loading = false),
+      map(response => response.body),
+      tap(resp => this.userId$.next(resp!.userId))
+    );
   }
+
+  initUserSalePost$() {
+    this.UserSearchPost$ = this.userId$.pipe(
+      switchMap(userId => this.searchPostService.getSomeSearchPostForUser(userId, 5)),
+      filter((value) => value !== null),
+      tap(_ => this.loading = false),
+      map(response => response.body),
+    );
+  }
+  DefineOwner(userId:number){
+    let currentUserId = this.userService.GetCurrentUserID()
+    if(currentUserId == userId){
+      this.isOwner = true;
+    }else{
+      this.isOwner = false;
+    }
+  }
+
+  ngOnDestroy() {
+    this.userId$.complete();
+  }
+
 
   redirectToPaymentModule() {
     this.router.navigateByUrl(`/payment`)

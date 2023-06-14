@@ -22,6 +22,7 @@ export class SearchPostModel extends MerchPostModel{
   itemNumber!: string;
   itemName!: string;
   grading!: GradingModel;
+  username!: string;
   liked!: boolean;
 }
 
