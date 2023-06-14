@@ -40,9 +40,7 @@ export class LoginPage implements OnInit {
         const accessToken = localStorage.getItem('access_token')
         if(accessToken){
           this.userService.GetUserInfo(accessToken).subscribe(res => {
-            const user = new UserModel();
-            user.email = res.user.email
-            user.username = res.user.username
+            const user = Object.assign(new UserModel(), res.user);
             this.userService.setCurrentUser(user)
           }, error => {console.error("erreur")})
         }

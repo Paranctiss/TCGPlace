@@ -8,6 +8,7 @@ import { SalePostService } from '../services/salePost.service';
 import { ModalController } from '@ionic/angular';
 import { FullScreenImageComponent } from 'src/app/core/components/full-screen-image/full-screen-image.component';
 import { FullScreenImageSliderComponent } from 'src/app/core/components/full-screen-image-slider/full-screen-image-slider.component';
+import {PaymentComponent} from "../payment/payment.component";
 
 @Component({
   selector: 'app-view-sale-post',
@@ -78,8 +79,14 @@ export class ViewSalePostComponent {
     return await modal.present();
   }
 
-  redirectToPaymentModule() {
-    this.router.navigateByUrl(`/payment`)
+  async openModulePayment(post : SalePostModel) {
+    const modal = await this.modalCtrl.create({
+      component: PaymentComponent,
+      componentProps: {
+        post: post
+      }
+    });
+    return await modal.present();
   }
 
   redirectToProfile(userId: number) {

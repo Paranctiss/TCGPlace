@@ -17,26 +17,26 @@ import {SearchPostCardComponent} from "../core/components/search-post-card/searc
 import {SalePostCardComponent} from "../core/components/sale-post-card/sale-post-card.component";
 import {AddPostPageModule} from "../add-post/add-post.module";
 import {SearchPostService} from "./search/services/searchPost.service";
+import {PaymentComponent} from "./sale/payment/payment.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        IonicModule,
-        StorePageRoutingModule,
-        ExploreContainerComponentModule,
-        CoreModule,
-        AddPostPageModule
-    ],
+  imports: [
+      CommonModule,
+      FormsModule,
+      ReactiveFormsModule,
+      IonicModule,
+      StorePageRoutingModule,
+      ExploreContainerComponentModule,
+      CoreModule,
+      AddPostPageModule
+  ],
   exports: [
     SalePostCardComponent,
     SearchPostCardComponent,
     SaleComponent,
     SearchComponent
-
   ],
-  declarations: [StorePage, SaleComponent, BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent, SearchPostCardComponent, SalePostCardComponent],
+  declarations: [StorePage, SaleComponent, PaymentComponent,BrowseSalePostsComponent, SearchComponent, BrowseSearchPostsComponent, SearchPostCardComponent, SalePostCardComponent],
   providers: [SearchPostService]
 })
 export class StorePageModule {}

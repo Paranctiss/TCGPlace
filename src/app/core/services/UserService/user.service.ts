@@ -44,10 +44,16 @@ export class UserService{
     return this.isLoggedIn.asObservable()
   }
 
-
   GetCurrentUserID(): number{
-    return 1;
+    var storedUser = localStorage.getItem('current_user')
+    var userId
+    if (storedUser) {
+      let userObject = JSON.parse(storedUser);
+      userId = userObject.id;
+    }
+    return userId;
   }
+
   GetUserInfo(token: string): Observable<any> {
     return this.httpClient.get(`${this.apiURL}/Registration/user-info`);
   }

@@ -1,0 +1,58 @@
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+.payment-image{
+  width: 150px;
+  height: auto;
+}
+
+.image-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 20%;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.info-text{
+  font-size: 14px;
+
+}
+
+.card-payment{
+  margin: 2%;
+}
+
+.total{
+  margin-top: 10px;
+}
+
+.important-text{
+  font-size: large;
+}
+
+.sub-text{
+  font-weight: 100;
+  margin-bottom: 10px;
+  font-size: x-small;
+}
+
+.livraison-container{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.spin{
+  position: relative;
+  left: 45%;
+}
+.pageSpin{
+  position: relative;
+  left: 45%;
+  top: 50%;
+}
