@@ -9,10 +9,10 @@
       <div class="card" align="center" style="margin-top: 10px">
         <swiper-container slides-per-view="auto" free-mode="true" class="pb-1 pt-1">
           <swiper-slide style="margin: 5px; max-width: 160px;">
-            <ion-img src="{{salePost.image}}/high.webp" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
+            <ion-img src="{{salePost.image}}" (click)="openFullscreenSlider(salePost.image, salePost.salePicturePosts)"  style="width: 150px"></ion-img>
           </swiper-slide>
           <swiper-slide *ngFor="let salePostPicture of salePost.salePicturePosts; index as position" style="margin: 5px; max-width: 160px;">
-            <ion-img src="{{salePostPicture}}" (click)="openFullscreenSlider(salePost.image+'/high.webp', salePost.salePicturePosts)"  style="width: 150px"></ion-img>
+            <ion-img src="{{salePostPicture}}" (click)="openFullscreenSlider(salePost.image, salePost.salePicturePosts)"  style="width: 150px"></ion-img>
           </swiper-slide>
         </swiper-container>
       </div>
