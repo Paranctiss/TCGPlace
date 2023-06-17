@@ -23,9 +23,6 @@ export class LastestSalePostSliderComponent implements OnInit {
       tap(val => this.isLoading = false),
       map(response => response.body)
     )
-    this.salePost.subscribe(data => {
-
-    })
   }
 
   navigateTo() {
